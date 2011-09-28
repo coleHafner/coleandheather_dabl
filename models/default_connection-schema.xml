@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="dabl">
+  <table name="address" phpName="Address">
+    <column name="address_id" phpName="AddressId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="street_address" phpName="StreetAddress" type="VARCHAR" size="1000" required="false"/>
+    <column name="city" phpName="City" type="VARCHAR" size="1000" required="false"/>
+    <column name="state" phpName="State" type="VARCHAR" size="1000" required="false"/>
+    <column name="zip" phpName="Zip" type="VARCHAR" size="1000" required="false"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
+  </table>
+  <table name="article" phpName="Article">
+    <column name="article_id" phpName="ArticleId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="1000" required="false"/>
+    <column name="body" phpName="Body" type="VARCHAR" size="5000" required="false"/>
+    <column name="post_timestamp" phpName="PostTimestamp" type="INTEGER" size="100" required="false"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" size="100" required="true"/>
+    <column name="section_id" phpName="SectionId" type="INTEGER" size="100" required="true"/>
+    <column name="view_id" phpName="ViewId" type="INTEGER" size="100" required="true"/>
+    <column name="priority" phpName="Priority" type="INTEGER" size="100" required="false"/>
+    <column name="tag_string" phpName="TagString" type="VARCHAR" size="5000" required="false"/>
+    <index name="authentication_id">
+      <index-column name="user_id"/>
+    </index>
+    <index name="section_id">
+      <index-column name="section_id"/>
+    </index>
+    <index name="view_id">
+      <index-column name="view_id"/>
+    </index>
+  </table>
+  <table name="articleToFile" phpName="Articletofile">
+    <column name="article_to_file_id" phpName="ArticleToFileId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="article_id" phpName="ArticleId" type="INTEGER" size="100" required="true"/>
+    <column name="file_id" phpName="FileId" type="INTEGER" size="100" required="true"/>
+    <column name="priority" phpName="Priority" type="INTEGER" size="100" required="false"/>
+    <index name="article_id">
+      <index-column name="article_id"/>
+    </index>
+    <index name="file_id">
+      <index-column name="file_id"/>
+    </index>
+  </table>
+  <table name="fact" phpName="Fact">
+    <column name="fact_id" phpName="FactId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" size="100" required="true"/>
+    <column name="fact" phpName="Fact" type="VARCHAR" size="1000" required="false"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
+  </table>
+  <table name="file" phpName="File">
+    <column name="file_id" phpName="FileId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="file_type_id" phpName="FileTypeId" type="INTEGER" size="100" required="true"/>
+    <column name="file_name" phpName="FileName" type="VARCHAR" size="1000" required="false"/>
+    <column name="upload_timestamp" phpName="UploadTimestamp" type="INTEGER" size="100" required="false"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
+    <index name="file_type_id">
+      <index-column name="file_type_id"/>
+    </index>
+  </table>
+  <table name="fileType" phpName="Filetype">
+    <column name="file_type_id" phpName="FileTypeId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="1000" required="false"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
+    <column name="directory" phpName="Directory" type="VARCHAR" size="1000" required="false"/>
+  </table>
+  <table name="guest" phpName="Guest">
+    <column name="guest_id" phpName="GuestId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="parent_guest_id" phpName="ParentGuestId" type="INTEGER" size="100" required="true"/>
+    <column name="address_id" phpName="AddressId" type="INTEGER" size="100" required="true"/>
+    <column name="first_name" phpName="FirstName" type="VARCHAR" size="1000" required="false"/>
+    <column name="last_name" phpName="LastName" type="VARCHAR" size="1000" required="false"/>
+    <column name="activation_code" phpName="ActivationCode" type="VARCHAR" size="1000" required="false"/>
+    <column name="initial_timestamp" phpName="InitialTimestamp" type="VARCHAR" size="1000" required="true"/>
+    <column name="update_timestamp" phpName="UpdateTimestamp" type="VARCHAR" size="1000" required="false"/>
+    <column name="expected_count" phpName="ExpectedCount" type="TINYINT" size="3" required="false"/>
+    <column name="actual_count" phpName="ActualCount" type="TINYINT" size="3" required="false"/>
+    <column name="rsvp_through_site" phpName="RsvpThroughSite" type="TINYINT" size="1" required="true"/>
+    <column name="is_attending" phpName="IsAttending" type="TINYINT" size="1" required="true"/>
+    <column name="is_new" phpName="IsNew" type="TINYINT" size="1" required="true" defaultValue="0"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="true" defaultValue="1"/>
+  </table>
+  <table name="guestToGuestType" phpName="Guesttoguesttype">
+    <column name="guest_to_guest_type_id" phpName="GuestToGuestTypeId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="guest_id" phpName="GuestId" type="INTEGER" size="100" required="true"/>
+    <column name="guest_type_id" phpName="GuestTypeId" type="INTEGER" size="100" required="true"/>
+  </table>
+  <table name="guestType" phpName="Guesttype">
+    <column name="guest_type_id" phpName="GuestTypeId" type="INTEGER" size="100" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="1000" required="false"/>
+    <column name="is_special" phpName="IsSpecial" type="TINYINT" size="1" required="false"/>
+    <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
+  </table>
+</database>

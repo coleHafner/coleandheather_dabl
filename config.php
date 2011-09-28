@@ -20,6 +20,9 @@ define('LIBRARIES_DIR', APP_DIR . 'libraries/');
 // directory for logs
 define('LOGS_DIR', APP_DIR . 'logs/');
 
+//site name
+define( 'SITE_NAME', 'coleandheather.com' );
+
 // output errors to brower
 ini_set('display_errors', true);
 
