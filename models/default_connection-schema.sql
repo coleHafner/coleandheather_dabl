@@ -162,5 +162,19 @@ CREATE TABLE `guestType`
 	PRIMARY KEY (`guest_type_id`)
 ) ENGINE=InnoDB;
 
+-- ---------------------------------------------------------------------
+-- section
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `section`;
+
+CREATE TABLE `section`
+(
+	`section_id` INTEGER(100) NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(1000),
+	`active` TINYINT(1) DEFAULT 1,
+	PRIMARY KEY (`section_id`)
+) ENGINE=InnoDB;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

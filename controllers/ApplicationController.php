@@ -4,27 +4,42 @@ abstract class ApplicationController extends BaseController {
 
 	function __construct() {
 
+		$this['title'] = 'Site Title';
+
 		$this['actions'] = array(
 			'Home' => site_url()
 		);
 
 		$current_controller = str_replace('Controller', '', get_class($this));
+		$this['current_page'] = strtolower( $current_controller );
 
-		if('Index' == $current_controller){
-			$this['current_page'] = 'Home';
-		} else {
-			$this['current_page'] = StringFormat::titleCase($current_controller, ' ');
-		}
+		$this['primary_nav'] = array(
+			'index' => array(
+				'display' => 'Our Story',
+				'sub' => array( 'Her Story' => 'index', 'His Story' => 'his-story', 'Did you know?' => 'facts' )
+			),
 
-		$this['title'] = $this['current_page'];
+			'rsvp' => array(
+				'display' => 'RSVP',
+				'sub' => null
+			),
 
-		foreach (glob(CONTROLLERS_DIR . '*.php') as $controller_file) {
-			$controller = str_replace('Controller.php', '', basename($controller_file));
-			if ($controller == 'Application' || $controller == 'Index') {
-				continue;
-			}
-			$this['actions'][StringFormat::titleCase($controller, ' ')] = site_url(StringFormat::url($controller));
-		}
+			'gallery' =>  array(
+				'display' => 'Gallery',
+				'sub' => null
+			),
+
+			'posts' => array(
+				'display' => 'Write Us',
+				'sub' => null
+			),
+
+			'info' => array(
+				'display' => 'Wedding Info',
+				'sub' => array( 'Wedding Info' => 'index', 'Gift Registries' => 'registries',
+					'Event Venue' => 'venue', 'Get Directions' => 'directions', 'Area Hotels' => 'hotels' )
+			)
+		);
 	}
 
 	public function doAction($action_name = null, $params = array()) {

@@ -1,5 +1,3 @@
-<? print_r( $storage );exit; ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php echo ( !empty( $fb_xmls ) ) ? $fb_xmls : ''; ?>>
 
@@ -7,7 +5,7 @@
 
 		<meta name="viewport" content="width=device-width; user-scalable=1;" ></meta>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" ></meta>
-		<title><?php echo $title . ' - ' . SITE_NAME; ?></title>
+		<title><?php echo $current_page . ' - ' . SITE_NAME; ?></title>
 
 		<link rel="stylesheet" href="<?php echo site_url( '/css/themes/cah/extensions/960_grid.css' ); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo site_url( '/css/themes/cah/extensions/jquery-ui-1.8.1.custom.css' ); ?>" type="text/css" />
@@ -58,7 +56,7 @@
 
 				<div class="grid_10">
 					<div class="primary_nav color_cyan_bg">
-						<?php load_view( 'widgets/primary-nav', array( 'active_controller' => $current_page ) ); ?>
+						<?php load_view( 'widgets/primary-nav', $params ); ?>
 						<div style="position:absolute;top:0px;left:-14px;">
 							<img <?php site_url( '/images/ribbon_end_left2.gif' ); ?>"/>
 						</div>
