@@ -2,19 +2,17 @@
 $q = new Query;
 $q->add( 'title', $section_title );
 $result = Section::doSelect( $q );
+$s = array_shift( $result );
 
-if( is_object( $result[0] ) ) {
+if( is_object( $s ) ) {
 	$q = new Query;
-	$q->add( 'section_id', $result[0]->getSectionId() );
+	$q->add( 'section_id', $s->getSectionId() );
 	$q->add( 'view_id', Article::$views[$current_page] );
 	$result = Article::doSelect( $q );
-
-	if( is_object( $result[0] ) ) {
-		$active_article = $result[0];
-	}
+	$active_article = array_shift( $result );
 }
 
-if( isset( $active_article ) ) {
+if( is_object( $active_article ) ) {
 ?>
 
 <div class="padder_10 header_text color_brown">

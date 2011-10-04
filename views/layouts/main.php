@@ -34,7 +34,7 @@
 				<div class="grid_10">
 					<div class="header header<?php echo rand( 1, 4 ); ?>">
 						<div style="position:absolute;bottom:10px;left:20px;">
-							<img <?php site_url( '/images/logo_small.gif' ); ?>" />
+							<img src="<?php echo site_url( '/images/logo_small.gif' ); ?>" />
 						</div>
 					</div>
 				</div>
@@ -58,10 +58,10 @@
 					<div class="primary_nav color_cyan_bg">
 						<?php load_view( 'widgets/primary-nav', $params ); ?>
 						<div style="position:absolute;top:0px;left:-14px;">
-							<img <?php site_url( '/images/ribbon_end_left2.gif' ); ?>"/>
+							<img src="<?php echo site_url( '/images/ribbon_end_left2.gif' ); ?>"/>
 						</div>
 						<div style="position:absolute;top:0px;right:-14px;">
-							<img <?php site_url( '/images/ribbon_end_right2.gif' ); ?>"/>
+							<img src="<?php echo site_url( '/images/ribbon_end_right2.gif' ); ?>"/>
 						</div>
 					</div>
 				</div>

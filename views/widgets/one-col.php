@@ -1,4 +1,4 @@
-<? $ids = array( 'rsvp' => 'rsvp_container', 'posts' => 'postwall_container' ); ?>
+<? $ids = array( 'rsvp' => 'rsvp_container', 'posts' => 'postwall_container', 'gallery' => 'gallery_container' ); ?>
 
 <div class="grid_10">
 	<div class="content" id="<?php echo $ids[$current_page]; ?>">
