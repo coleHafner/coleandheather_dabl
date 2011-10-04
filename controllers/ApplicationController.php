@@ -4,12 +4,6 @@ abstract class ApplicationController extends BaseController {
 
 	function __construct() {
 
-		$this['title'] = 'Site Title';
-
-		$this['actions'] = array(
-			'Home' => site_url()
-		);
-
 		$current_controller = str_replace('Controller', '', get_class($this));
 		$this['current_page'] = strtolower( $current_controller );
 
