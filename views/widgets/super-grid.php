@@ -1,4 +1,5 @@
 <?php
+
 //shorten name
 $vars = $grid_options;
 

@@ -3,7 +3,6 @@
 class GalleryController extends ApplicationController {
 
 	function index() {
-
 		//zend framework has some deprecated functions, will need to silence errors temporarily
 		ini_set( 'display_errors', false );
 		$pa = new PicasaAlbum( "colehafner" );

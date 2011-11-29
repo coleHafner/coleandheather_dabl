@@ -4,9 +4,11 @@
  * @since	20101103, hafner
  */
 require_once 'Zend/Loader.php';
+//Zend_Loader::loadFile('AlbumQuery.php');
+//Zend_Loader::loadFile('PhotoQuery.php');
 Zend_Loader::loadClass('Zend_Gdata_Photos');
-Zend_Loader::loadClass( 'Zend_Gdata_Photos_AlbumQuery' );
-Zend_Loader::loadClass( 'Zend_Gdata_Photos_PhotoQuery' );
+Zend_Loader::loadClass('Zend_Gdata_Photos_AlbumQuery' );
+Zend_Loader::loadClass('Zend_Gdata_Photos_PhotoQuery' );
 
 class PicasaAlbum
 {

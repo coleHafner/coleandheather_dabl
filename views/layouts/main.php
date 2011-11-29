@@ -4,93 +4,48 @@
 	<?php load_view( 'layouts/head', $params ); ?>
 
 	<body>
+	
+		<!--
+		<div class="frame frame_horiz frame_top">
+			&nbsp;
+		</div>
+		-->
+		
 		<!--page-->
 		<div class="page">
-
-			<!--header-->
-			<div class="container_12">
-				<div class="grid_1">
-					&nbsp;
+		
+			<div class="canvas_spacer">
+				<div style="position:relative;padding-left:40px;padding-top:25px">
+					<img src="/images/header_img1.png" />
 				</div>
-
-				<div class="grid_10">
-					<div class="header header<?php echo rand( 1, 4 ); ?>">
-						<div style="position:absolute;bottom:10px;left:20px;">
-							<img src="<?php echo site_url( '/images/logo_small.gif' ); ?>" />
-						</div>
-					</div>
-				</div>
-
-				<div class="grid_1">
-					&nbsp;
-				</div>
-
-				<div class="clear"></div>
 			</div>
-			<!--/header-->
-
-			<!--primary nav-->
-			<div class="container_12">
-
-				<div class="grid_1">
-					&nbsp;
+			
+			<!--canvas-->
+			<div class="canvas">
+			
+				<div class="corner corner_ne">
+					<img src="/images/photo_corner_ne.png" />
 				</div>
-
-				<div class="grid_10">
-					<div class="primary_nav color_cyan_bg">
-						<?php load_view( 'widgets/primary-nav', $params ); ?>
-						<div style="position:absolute;top:0px;left:-14px;">
-							<img src="<?php echo site_url( '/images/ribbon_end_left2.gif' ); ?>"/>
-						</div>
-						<div style="position:absolute;top:0px;right:-14px;">
-							<img src="<?php echo site_url( '/images/ribbon_end_right2.gif' ); ?>"/>
-						</div>
-					</div>
+				
+				<div class="corner corner_nw">
+					<img src="/images/photo_corner_nw.png" />
 				</div>
-
-				<div class="grid_1">
-					&nbsp;
+				
+				<div class="corner corner_sw">
+					<img src="/images/photo_corner_sw.png" />
 				</div>
-
-				<div class="clear"></div>
+				
+				<div class="corner corner_se">
+					<img src="/images/photo_corner_se.png" />
+				</div>
+				
 			</div>
-			<!--/primary nav-->
-
-			<!--content-->
-			<div class="container_12">
-				<div class="grid_1">
-					&nbsp;
-				</div>
-				<?php echo $content ?>
-				<div class="grid_1">
-					&nbsp;
-				</div>
-
-				<div class="clear"></div>
-
-			</div>
-			<!--/content-->
-
-			<!--footer-->
-			<div class="container_12">
-				<div class="grid_1">
-					&nbsp;
-				</div>
-
-				<div class="grid_10">
-					<div class="footer">
-						<?php echo strtoupper( '&copy;Cole and Heather 2011 <span style="color:#00FFFF;font-weight:bold;">|</span> Lovingly handcrafted by <a href="http://colehafner.com" target="_blank">Cole</a>' ) ?>
-					</div>
-				</div>
-
-				<div class="grid_1">
-					&nbsp;
-				</div>
-				<div class="clear"></div>
-			</div>
-			<!--/footer-->
-
+			<!--/canvas-->
+			
 		</div>
 		<!--/page-->
+		
+		
+		
 	</body>
 </html>

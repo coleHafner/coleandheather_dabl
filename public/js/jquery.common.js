@@ -242,8 +242,37 @@ $( window ).load( function() {
 		var directionsDisplay;
 		var directionsService;
 	}
+	
+	resizePage();
 
 });
+
+$(window).resize( function(){
+	resizePage();
+});
+
+function resizePage() {
+	//resize page
+	var $page = $('.page');
+	var currentMargin = parseInt($page.css('margin-top'));
+	var viewportWidth = parseInt($(window).width());
+	var viewportHeight = parseInt($(window).height());
+
+	var newWidth = viewportWidth - (currentMargin * 2);
+	$page.css('width', newWidth);
+	
+	var newHeight = viewportHeight - (currentMargin * 2);
+	$page.css('height', newHeight);
+	
+	resizeCanvas();
+}//resizePage()
+
+function resizeCanvas() {
+	var pageHeight = parseInt($('.page').height());
+	var canvasHeight = parseInt($('.canvas').height());
+	var newMargin = (pageHeight - canvasHeight) * .85;
+	$('.canvas_spacer').css('height', newMargin);
+}//resizeCanvas()
 
 function loadRsvpForm( cmd, options, callback ) {
 
