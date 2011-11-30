@@ -4,48 +4,91 @@
 	<?php load_view( 'layouts/head', $params ); ?>
 
 	<body>
-	
-		<!--
-		<div class="frame frame_horiz frame_top">
-			&nbsp;
-		</div>
-		-->
-		
 		<!--page-->
 		<div class="page">
 		
 			<div class="canvas_spacer">
-				<div style="position:relative;padding-left:40px;padding-top:25px">
+			
+				<div class="container_12">
+					<div class="grid_6">
+						&nbsp;
+					</div>
+					<div class="grid_6">
+						<div class="nav">
+							<table class="nav_table">
+								<tr>
+<?php
+$navs = array(
+	'index' => 'Details',
+	'gallery' => 'Gallery',
+	'rsvp' => 'Rsvp',
+	'posts' => 'Message Us',
+);
+
+foreach($navs as $link => $display) {
+	$class = ($current_page == $link) ? 'class="active"' : '';
+	echo '
+									<td><a href="' . site_url( '/' . $link) . '" ' . $class . '>' . $display . '</a></td>';
+}
+?>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				
+				<div class="logo">
 					<img src="/images/header_img1.png" />
 				</div>
+
 			</div>
 			
-			<!--canvas-->
-			<div class="canvas">
+			<!--canvas container-->
+			<div class="canvas_container">
 			
-				<div class="corner corner_ne">
-					<img src="/images/photo_corner_ne.png" />
+				<!--canvas-->
+				<div class="canvas">
+				
+					<div class="container_12">
+						<div class="grid_12">
+							<?php //echo $content; ?>
+						</div>
+					</div>
+				
+					<div class="corner corner_ne">
+						<img src="/images/photo_corner_ne.png" />
+					</div>
+					
+					<div class="corner corner_nw">
+						<img src="/images/photo_corner_nw.png" />
+					</div>
+					
+					<div class="corner corner_sw">
+						<img src="/images/photo_corner_sw.png" />
+					</div>
+					
+					<div class="corner corner_se">
+						<img src="/images/photo_corner_se.png" />
+					</div>
+					
+				</div>
+				<!--/canvas-->
+				
+				<div class="feather_ne">
+					<img src="/images/feather.png" />
 				</div>
 				
-				<div class="corner corner_nw">
-					<img src="/images/photo_corner_nw.png" />
+				<!--
+				<div class="feather_nw">
+					<img src="/images/feather_nw.png" />
 				</div>
-				
-				<div class="corner corner_sw">
-					<img src="/images/photo_corner_sw.png" />
-				</div>
-				
-				<div class="corner corner_se">
-					<img src="/images/photo_corner_se.png" />
-				</div>
-				
+				-->
+
 			</div>
-			<!--/canvas-->
-			
+			<!--/canvas container-->
+						
 		</div>
 		<!--/page-->
-		
-		
-		
 	</body>
 </html>

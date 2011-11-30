@@ -268,10 +268,17 @@ function resizePage() {
 }//resizePage()
 
 function resizeCanvas() {
+
 	var pageHeight = parseInt($('.page').height());
 	var canvasHeight = parseInt($('.canvas').height());
-	var newMargin = (pageHeight - canvasHeight) * .85;
-	$('.canvas_spacer').css('height', newMargin);
+	var diff = pageHeight - canvasHeight;
+	var height = diff * .85;
+	
+	$('.canvas_spacer').css('height', height);
+	$('.canvas_spacer .grid_6').css('height', diff);
+	$('.canvas_spacer .nav').css('top', (diff/2) - 20);
+	$('.canvas_spacer .logo').css('top', (diff/2) - 55);
+	
 }//resizeCanvas()
 
 function loadRsvpForm( cmd, options, callback ) {

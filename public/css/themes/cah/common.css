@@ -35,11 +35,19 @@ a img {
 /***************************************************************************************
 Sections
 ***************************************************************************************/
+
+.green {
+	color:#61b77a;
+}
+
 .page {
 	position:relative;
 	margin:11px auto 11px auto;
-	background-color:#85283F;
 	box-shadow:4px 4px 5px rgba(0,0,0, .7);
+	
+	/*background-color:#4f204a;*/
+	background:#4f2049;
+	background-image: url("/images/paper-bg7.jpeg");
 }
 
 .canvas_spacer {
@@ -48,13 +56,16 @@ Sections
 	height:30px;
 }
 
-.canvas{
+.canvas, .canvas_container {
 	position:relative;
 	margin:auto auto auto auto;
 	width:900px;
 	height:500px;
 	background-color:#000;
-	
+}
+
+.canvas {
+	z-index:1;
 }
 
 .corner {
@@ -84,6 +95,61 @@ Sections
 .corner_se {
 	bottom:-10px;
 	right:-10px;
+}
+
+.nav {
+	position:absolute;
+	color:#fff;
+	width:100%;
+	z-index:1;
+}
+
+.nav_table {
+	position:relative;
+	float:right;
+	margin-right:80px;
+}
+
+.nav_table td {
+	padding:0 17px 0 17px;
+}
+
+.nav_table a {
+	font-size: 16px;
+	color:#fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav_table a:hover, .nav_table a.active {
+	font-size: 16px;
+	color:#61b77a;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+.logo {
+	position:absolute;
+	left:40px;
+	z-index:1;
+}
+
+.feather_ne {
+	position:absolute;
+	top:-215px;
+	right:-190px;
+	z-index:0;
+	width:297px;
+	height:300px;
+}
+
+.feather_nw {
+	position:absolute;
+	top:-215px;
+	left:-200px;
+	z-index:0;
+	width:297px;
+	height:300px;
 }
 
 /***************************************************************************************

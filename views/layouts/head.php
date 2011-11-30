@@ -13,6 +13,6 @@
 	<script type="text/javascript" src="<?php echo site_url( '/js/extensions/jquery-ui-1.8.1.custom.min.js' ); ?>"></script>
 	<script type="text/javascript" src="<?php echo site_url( '/js/extensions/jquery.imgbox.js' ); ?>"></script>
 	<script type="text/javascript" src="<?php echo site_url( '/js/jquery.common.js' ); ?>"></script>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<!--	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
 
 </head>
