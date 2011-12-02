@@ -29,6 +29,18 @@ define('THE_BIG_DAY', 'August 27, 2012');
 //rsvp by
 define('RSVP_DEADLINE', 'February 27, 2012');
 
+
+$becky = '114983953304699001694';
+$cole = '106133921811390859024';
+
+//for gallery
+define('PICASA_USER', $becky);
+
+$cole = '5575281764283681441';
+$becky = '5443814431662124337';
+//for gallery
+define('PICASA_ALBUM', $becky);
+
 // output errors to brower
 ini_set('display_errors', true);
 

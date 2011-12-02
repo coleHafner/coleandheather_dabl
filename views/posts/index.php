@@ -1,22 +1,12 @@
-<?php
-if( !isset( $skip_template ) ) {
-	load_view( 'widgets/one-col', $params );
-} else {
-?>
-
-
-<div class="header_text color_brown padder_10 padder_no_left">
-	Leave us a comment
+<div class="header_text light_purple padder_10 center" style="padding-bottom:20px;">
+	Leave us a Message
 </div>
 
-<div class="color_tan_bg border_solid_grey">
-	<div style="position:relative;padding:10px 0px 10px 25px;">
-		<div id="fb-root">
-		</div>
-
-		<script src="http://connect.facebook.net/en_US/all.js#appId=194461467240936&amp;xfbml=1"></script>
-		<fb:comments xid="194461467240936" numposts="10" width="730" publish_feed="true"></fb:comments>
+<div class="border_dark_grey" style="position:relative;margin:auto;width:731px;background-color:#fff;border:1px solid #fff;box-shadow:3px 3px 5px rgba(8,8,8,.33);">
+	<div id="fb-root">
 	</div>
-</div>
 
-<?php } ?>
+	<script src="http://connect.facebook.net/en_US/all.js#appId=194461467240936&amp;xfbml=1"></script>
+	<fb:comments xid="194461467240936" numposts="10" width="730" publish_feed="true"></fb:comments>
+</div>
+<div style="position:relative;height:20px;">&nbsp;</div>

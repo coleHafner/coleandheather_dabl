@@ -1,7 +1,5 @@
 $( document ).ready( function() {
 
-	$( ".gallery_click" ).imgbox();
-
 	$( ".text_input" ).live( "click", function(){
 		clearFormMessage();
 	});
@@ -9,17 +7,6 @@ $( document ).ready( function() {
 	$( ".text_input_short_height" ).live( "click", function(){
 		clearFormMessage();
 	});
-
-	if( $( "#gallery_container" ).length > 0 ||
-		$( "#postwall_container" ).length > 0 )
-	{
-		adjustCanvasHeightForGallery( function(){} );
-	}
-
-	if( $( "#her_story" ).length > 0 )
-	{
-		adjustCanvasHeightForTwoCol( function(){} );
-	}
 
 	$( ".rsvp" ).live( "click", function( event ) {
 
@@ -195,41 +182,10 @@ $( document ).ready( function() {
 				break;
 		}
 	});
+	
+	resizePage();
 
-});
 
-$( ".fact" ).live( "click", function( event ) {
-	event.preventDefault();
-	var process = $( this ).attr( "process" ).toLowerCase();
-
-	switch( process )
-	{
-		case "new-fact":
-			var current_fact = $( "#current_fact" ).attr( "value" );
-			var max_facts = $( "#max_facts" ).attr( "value" );
-			var unique = false;
-			var new_fact = 0;
-
-			while( !unique )
-			{
-				new_fact = Math.ceil( Math.random() * max_facts );
-
-				if( current_fact != new_fact )
-				{
-					unique = true;
-				}
-			}
-
-			//hide current fact
-			$( "#fact_" + current_fact ).hide();
-
-			//set new current fact
-			$( "#current_fact" ).attr( "value", new_fact );
-
-			//show new fact
-			$( "#fact_" + new_fact ).show();
-			break;
-	}
 });
 
 $( window ).load( function() {
@@ -242,9 +198,6 @@ $( window ).load( function() {
 		var directionsDisplay;
 		var directionsService;
 	}
-	
-	resizePage();
-
 });
 
 $(window).resize( function(){

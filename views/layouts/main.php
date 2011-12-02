@@ -4,6 +4,19 @@
 	<?php load_view( 'layouts/head', $params ); ?>
 
 	<body>
+	
+<?php if($current_page == 'gallery') { ?>
+		<!-- php vars -->
+		<input type="hidden" id="root_url" value="<?php site_url(); ?>" />
+		<input type="hidden" id="pwa_username" value="<?php echo PICASA_USER; ?>" />
+				<input type="hidden" id="pwa_album" value="<?php echo PICASA_ALBUM; ?>" />
+
+		<input type="hidden" id="max_pagesets" value="0" />
+		<input type="hidden" id="cur_pageset" value="0" />
+		<!-- end php vars -->
+<?php } ?>
+	
+	
 		<!--page-->
 		<div class="page">
 		
@@ -49,7 +62,7 @@ foreach($navs as $link => $display) {
 				<!--canvas-->
 				<div class="canvas">
 					<div class="content_outer">
-						<div style="content_inner">
+						<div style="content_inner" id="content">
 							<?php echo $content;?>
 						</div>
 					</div>
