@@ -6,8 +6,8 @@ class RsvpController extends ApplicationController {
 		$step = "step-1";
 		$valid_steps = array( 'step-1', 'step-2', 'step-3-0', 'step-3-1', 'step-4' );
 
-		if( isset( $_REQUEST['activation_code'] ) && Guest::validateActivationCode( $_REQUEST['activation_code'] )
-			|| isset( $_REQUEST['guest_id'] ) && Guest::validateGuestId( $_REQUEST['guest_id'] ) ) {
+		if( isset( $_REQUEST['activation_code'] ) && Guest::validateActivationCode( $_REQUEST['activation_code'] ) || 
+			isset( $_REQUEST['guest_id'] ) && Guest::validateGuestId( $_REQUEST['guest_id'] ) ) {
 			$step = ( isset( $_REQUEST['step'] ) && in_array( $_REQUEST['step'], $valid_steps ) ) ? $_REQUEST['step'] : 'step-2';
 			$this['skip_template'] = true;
 		}

@@ -262,22 +262,25 @@ function resizePage() {
 	$page.css('width', newWidth);
 	
 	var newHeight = viewportHeight - (currentMargin * 2);
-	$page.css('height', newHeight);
+	$page.css('min-height', newHeight);
 	
 	resizeCanvas();
 }//resizePage()
 
 function resizeCanvas() {
-
-	var pageHeight = parseInt($('.page').height());
-	var canvasHeight = parseInt($('.canvas').height());
-	var diff = pageHeight - canvasHeight;
-	var height = diff * .85;
+	var viewportHeight = parseInt($(window).height());
+	var calcHeight = viewportHeight * .2;
+	var minSpacerHeight = 125;
+	var logoHeight = 65;
 	
-	$('.canvas_spacer').css('height', height);
-	$('.canvas_spacer .grid_6').css('height', diff);
-	$('.canvas_spacer .nav').css('top', (diff/2) - 20);
-	$('.canvas_spacer .logo').css('top', (diff/2) - 55);
+	
+	var spacerHeight = (minSpacerHeight > calcHeight) ? minSpacerHeight : calcHeight;
+	var padding = (spacerHeight > minSpacerHeight) ? (spacerHeight - logoHeight)/2 : 20;
+	
+	$('.canvas_spacer').css('height', spacerHeight);
+	$('.canvas_spacer .nav').css('top', padding);
+	$('.canvas_spacer .logo').css('top', padding);
+	$('.canvas_spacer .nav_table td').css('lineHeight', logoHeight.toString() + 'px');
 	
 }//resizeCanvas()
 

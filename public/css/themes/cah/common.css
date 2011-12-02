@@ -33,11 +33,43 @@ a img {
 }
 
 /***************************************************************************************
-Sections
+Layout
 ***************************************************************************************/
 
 .green {
 	color:#61b77a;
+}
+
+.light_green {
+	color: #87af29;
+}
+
+.light_green_bg {
+	background-color: #87af29;
+}
+
+.green_bg {
+	background-color:#61b77a;
+}
+
+.purple {
+	color:#4f204a;
+}
+
+.purple_bg {
+	background-color:#4f204a;
+}
+
+.light_purple {
+	color:#9C3290;
+}
+
+.light_purple_bg {
+	background-color:#9C3290;
+}
+
+.grey {
+	color:#888;
 }
 
 .page {
@@ -45,23 +77,38 @@ Sections
 	margin:11px auto 11px auto;
 	box-shadow:4px 4px 5px rgba(0,0,0, .7);
 	
-	/*background-color:#4f204a;*/
-	background:#4f2049;
+	/*
+	background:#4f204a;
 	background-image: url("/images/paper-bg7.jpeg");
+	*/
+	
+	
+	background-image: url('/images/bg_star.png');
+	background-repeat:repeat-y repeat-x;
+	
 }
 
 .canvas_spacer {
 	position:relative;
 	width:100%;
+}
+
+.canvas_spacer_bottom {
+	position:relative;
 	height:30px;
+	width:90%;
 }
 
 .canvas, .canvas_container {
 	position:relative;
 	margin:auto auto auto auto;
 	width:900px;
-	height:500px;
-	background-color:#000;
+	min-height:500px;
+	background-attachment:fixed;
+	background-image: url('/images/bg_canvas.png');
+	background-repeat: repeat-x repeat-y;
+/*	box-shadow: 3px 3px 3px rgba(79, 12, 29, .33);*/
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, .22);
 }
 
 .canvas {
@@ -74,7 +121,7 @@ Sections
 }
 
 .corner img {
-	height:20%;
+	height:116px;
 }
 
 .corner_nw {
@@ -123,7 +170,7 @@ Sections
 
 .nav_table a:hover, .nav_table a.active {
 	font-size: 16px;
-	color:#61b77a;
+	color:#87b226;
 	font-weight:bold;
 	text-decoration: none;
 }
@@ -137,7 +184,7 @@ Sections
 .feather_ne {
 	position:absolute;
 	top:-215px;
-	right:-190px;
+	right:-180px;
 	z-index:0;
 	width:297px;
 	height:300px;
@@ -152,9 +199,37 @@ Sections
 	height:300px;
 }
 
+.content_outer {
+	position:relative;
+	padding:20px;
+}
+
+.content_inner {
+	position:relative;
+	width:100%;
+}
+
 /***************************************************************************************
-Content containers
+Index
 ***************************************************************************************/
+
+.index_photo {
+	position:relative;
+}
+
+.index_photo img {
+	position:relative;
+	border:1px solid #000;
+	width:250px;
+	box-shadow: 2px 2px 2px rgba(0,0,0, .25);	
+}
+
+
+/***************************************************************************************
+Containers
+***************************************************************************************/
+
+
 .header {
 	postion:relative;
 	height:350px;
@@ -611,10 +686,7 @@ RSVP
 .header_bar {
 	position:relative;
 	width:100%;
-	-moz-border-radius:.5em .5em 0em 0em;
-	-webkit-border-radius:.5em .5em 0em 0em;
-	border-bottom:1px solid #DEDBDB;
-	
+	border-bottom:1px solid #DEDBDB;	
 }
 
 .rsvp_activation_form {

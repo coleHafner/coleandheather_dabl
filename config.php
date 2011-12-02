@@ -21,7 +21,13 @@ define('LIBRARIES_DIR', APP_DIR . 'libraries/');
 define('LOGS_DIR', APP_DIR . 'logs/');
 
 //site name
-define( 'SITE_NAME', 'coleandheather.com' );
+define( 'SITE_NAME', 'nateandrebekah.com' );
+
+//wedding date
+define('THE_BIG_DAY', 'August 27, 2012');
+
+//rsvp by
+define('RSVP_DEADLINE', 'February 27, 2012');
 
 // output errors to brower
 ini_set('display_errors', true);

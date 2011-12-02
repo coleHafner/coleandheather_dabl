@@ -9,7 +9,7 @@
 		<table style="position:relative;margin:auto;">
 			<tr>
 				<td>
-					<a href="#" class="rsvp button rounded_corners color_lime_bg center" process="update-rsvp" guest_id="<? echo $active_record->getGuestId(); ?>" value="1">
+					<a href="#" class="rsvp button color_lime_bg center" process="update-rsvp" guest_id="<? echo $active_record->getGuestId(); ?>" value="1">
 						<span class="header_text color_white">
 							Yes
 						</span>
@@ -20,7 +20,7 @@
 				</td>
 				<td>
 
-					<a href="#" class="rsvp button rounded_corners color_red_bg center" process="update-rsvp" guest_id="<?php echo $active_record->getGuestId(); ?>" value="0">
+					<a href="#" class="rsvp button color_red_bg center" process="update-rsvp" guest_id="<?php echo $active_record->getGuestId(); ?>" value="0">
 						<span class="header_text color_white">
 							No
 						</span>

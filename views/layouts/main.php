@@ -7,13 +7,11 @@
 		<!--page-->
 		<div class="page">
 		
+			<!--header-->
 			<div class="canvas_spacer">
 			
 				<div class="container_12">
-					<div class="grid_6">
-						&nbsp;
-					</div>
-					<div class="grid_6">
+					<div class="grid_12">
 						<div class="nav">
 							<table class="nav_table">
 								<tr>
@@ -43,19 +41,20 @@ foreach($navs as $link => $display) {
 				</div>
 
 			</div>
+			<!--/header-->
 			
 			<!--canvas container-->
 			<div class="canvas_container">
 			
 				<!--canvas-->
 				<div class="canvas">
-				
-					<div class="container_12">
-						<div class="grid_12">
-							<?php //echo $content; ?>
+					<div class="content_outer">
+						<div style="content_inner">
+							<?php echo $content;?>
 						</div>
 					</div>
-				
+					
+					
 					<div class="corner corner_ne">
 						<img src="/images/photo_corner_ne.png" />
 					</div>
@@ -87,6 +86,12 @@ foreach($navs as $link => $display) {
 
 			</div>
 			<!--/canvas container-->
+			
+			<!--footer-->
+			<div class="canvas_spacer_bottom">
+				&nbsp;
+			</div>
+			<!--/footer-->
 						
 		</div>
 		<!--/page-->

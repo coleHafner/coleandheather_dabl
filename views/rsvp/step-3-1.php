@@ -17,7 +17,7 @@ foreach( $active_record->getChildren() as $i => $sub_g ) {
 
 <div class="rsvp_inner">
 	<div class="padder_10">
-		<a href="#" class="rsvp button rounded_corners color_lime_bg center" process="finalize-rsvp" guest_id="<?php echo $active_record->getGuestId(); ?>" >
+		<a href="#" class="rsvp button light_purple_bg center" process="finalize-rsvp" guest_id="<?php echo $active_record->getGuestId(); ?>" >
 			<span class="header_text color_white">
 				RSVP
 			</span>
