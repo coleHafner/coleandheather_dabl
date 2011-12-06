@@ -1,5 +1,5 @@
 <div class="padder_10 center" style="padding-top:0px;">
-	<span class="header_text color_black">
+	<span class="header_text light_purple">
 		We'll see you on <? echo THE_BIG_DAY; ?>
 	</span>
 </div>

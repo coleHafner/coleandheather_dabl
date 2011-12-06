@@ -72,20 +72,16 @@ Layout
 	color:#888;
 }
 
+.dark_grey_bg {
+	background-color:#888;
+}
+
 .page {
 	position:relative;
 	margin:11px auto 11px auto;
 	box-shadow:4px 4px 5px rgba(0,0,0, .7);
-	
-	/*
-	background:#4f204a;
-	background-image: url("/images/paper-bg7.jpeg");
-	*/
-	
-	
 	background-image: url('/images/bg_star.png');
 	background-repeat:repeat-y repeat-x;
-	
 }
 
 .canvas_spacer {
@@ -107,7 +103,6 @@ Layout
 	background-attachment:fixed;
 	background-image: url('/images/bg_canvas.png');
 	background-repeat: repeat-x repeat-y;
-/*	box-shadow: 3px 3px 3px rgba(79, 12, 29, .33);*/
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, .22);
 }
 
@@ -209,6 +204,12 @@ Layout
 	width:100%;
 }
 
+.sub_header {
+	font-size: 16px;
+	color:#888;
+	font-weight: bold;
+}
+
 /***************************************************************************************
 Index
 ***************************************************************************************/
@@ -224,6 +225,33 @@ Index
 	box-shadow: 2px 2px 2px rgba(0,0,0, .25);	
 }
 
+.index_canvas {
+	position:relative;
+	width:50%;
+	float:left;
+}
+
+.index_canvas_inner {
+	position:relative;
+	padding:5px 5px 5px 10px;
+}
+
+.index_divider {
+	position:absolute;
+	top:10px;
+	left:441px;
+	border-right:1px dashed #888;
+	min-height:480px;
+}
+
+.index_info_table {
+	position:relative;
+	padding-left:15px;
+}
+
+.index_info_table td {
+	padding-bottom:10px;
+}
 
 /***************************************************************************************
 Containers
@@ -423,6 +451,10 @@ Colors, borders, fonts, etc...
 
 .padder_10_top {
 	padding-top:10px;
+}
+
+.padder_10_bottom {
+	padding-bottom:10px;
 }
 
 .padder_5_left {

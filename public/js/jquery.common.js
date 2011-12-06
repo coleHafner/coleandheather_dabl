@@ -352,7 +352,7 @@ function mapShowRoute( start )
 function showFormMessage( message, success, callback )
 {
 	var target = $( "#results_div" );
-	var result_class = ( success != "1" ) ? "color_red_bg" : "";
+	var result_class = ( success != "1" ) ? "dark_grey_bg" : "";
 
 	//apply class and show message, do callback
 	target.addClass( result_class );
@@ -365,7 +365,7 @@ function clearFormMessage()
 {
 	if( $( "#results_div" ).length > 0 )
 	{
-		$( "#results_div" ).removeClass( "color_red_bg" );
+		$( "#results_div" ).removeClass( "dark_grey_bg" );
 		$( "#results_div" ).html( "" );
 	}
 }//clearFormMessage()

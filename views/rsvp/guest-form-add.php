@@ -1,7 +1,7 @@
 <div class="color_tan_bg border_solid_tan" style="width:100%;">
 
 	<div class="padder_10">
-		<div class="header_text_sub color_black">
+		<div class="header_text_sub color_sub">
 			Add New Guest
 		</div>
 
@@ -37,7 +37,7 @@
 			<table>
 				<tr>
 					<td style="text-align:left;">
-						<a href="#" class="rsvp button color_lime_bg center" process="add-guest" guest_id="<?php echo $active_record->getGuestId();?>" >
+						<a href="#" class="rsvp button light_purple_bg center" process="add-guest" guest_id="<?php echo $active_record->getGuestId();?>" >
 							<span class="header_text_sub color_white">
 								Add Guest
 							</span>
