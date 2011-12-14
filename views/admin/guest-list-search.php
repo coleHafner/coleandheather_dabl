@@ -1,0 +1,1 @@
+<?php load_view('admin/module-guest-list', $params); ?>
