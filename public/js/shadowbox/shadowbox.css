@@ -12,7 +12,7 @@
 #sb-loading-inner span{background:url(loading.gif) no-repeat;padding-left:34px;display:inline-block;}
 #sb-body,#sb-loading{background-color:#000000/*#060606*/;}
 #sb-title,#sb-info{position:relative;margin:0;padding:0;overflow:hidden;}
-#sb-title,#sb-title-inner{height:26px;line-height:26px;}
+#sb-title,#sb-title-inner{height:26px;line-height:26px;display:none;}
 #sb-title-inner{font-size:16px;}
 #sb-info,#sb-info-inner{height:20px;line-height:20px;}
 #sb-info{ background-color:#FFFFFF; padding-bottom:7px; }

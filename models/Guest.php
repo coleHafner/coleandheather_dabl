@@ -184,7 +184,7 @@ class Guest extends baseGuest {
 	$q->orderBy('g.last_name', Query::ASC);
 
 	//apply constraints
-	if ($has_replied) {
+	if($has_replied) {
 	    if ($has_replied == "yes") {
 		$q->add('g.update_timestamp', null, Query::IS_NOT_NULL);
 	    } else {
@@ -192,11 +192,12 @@ class Guest extends baseGuest {
 	    }
 	}
 
-	if ($guest_type_id) {
-	    $q->join(' g2gt', 'g2gt.guest_id = g.guest_id');
+	if($guest_type_id) {
+	    $q->join('guestToGuestType g2gt', 'g2gt.guest_id = g.guest_id');
 	    $q->add('g2gt.guest_type_id', $guest_type_id);
 	}
 
+	//echo $q;die;
 	return Guest::doSelect($q);
 
     }//getGuestListComplete()

@@ -2,14 +2,14 @@
 General Styles
 ******************************************************************************************************************************************/
 body{
-	margin:0px; 
+	margin:0px;
 	padding:0px;
 }
 
 a:link, a:active, a:visited {
 	text-decoration:none;
 	color:#1874CD;
-	
+
 }
 
 a:hover {
@@ -260,7 +260,7 @@ Alignment and spacing
 }
 
 .padder_10_right {
-	padding-right:10px;	
+	padding-right:10px;
 }
 
 .corner_upper_right {
@@ -268,7 +268,7 @@ Alignment and spacing
 	top:10px;
 	right:10px;
 }
-	
+
 
 /****************************************************************************************************************************************
 Fonts and borders
@@ -306,7 +306,7 @@ Fonts and borders
 
 .font_med {
 	font-family:arial;
-	font-size:20px;
+	font-size:16px;
 	font-weight:normal;
 	color:#000;
 }

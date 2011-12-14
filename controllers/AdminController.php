@@ -30,7 +30,11 @@ class AdminController extends LoggedInApplicationController {
 	$this['title'] = "Complete Guest List";
 	$this['currentAction'] = 'guest-list';
 
-	$this['guestTypes'] = GuestType::doSelect();
+	$q= new Query;
+	$q->add('guest_type_id', 0, Query::GREATER_THAN);
+	$q->order('title');
+
+	$this['guestTypes'] = GuestType::doSelect($q);
 	$this['guests'] = Guest::getGuestListComplete();
 
 	$this['button'] = array(
@@ -38,7 +42,7 @@ class AdminController extends LoggedInApplicationController {
 	    'process' => "show_filter",
 	    'pk_name' => "guest_list_id",
 	    'pk_value' => "0",
-	    'button_value' => "Filter List",
+	    'button_value' => "Show Filter",
 	    'inner_div_style' => 'style="padding-top:4px;padding-left:1px;"',
 	    'link_style' => 'style="float:right;width:70px;font-size:10px;"',
 	);
@@ -57,11 +61,17 @@ class AdminController extends LoggedInApplicationController {
 		'pk_value' => 0,
 		'process' => "cancel_filter",
 		'id' => "guest_list",
-		'button_value' => "Cancel",
+		'button_value' => "Hide",
 		'extra_style' => 'style="width:41px;"' ),
-		'table_style' => 'style="margin-top:18px;margin-left:15px;"'
+		'table_style' => 'style="margin-top:18px;margin-left:55px;"'
 	);
 
     }//guestList()
+
+    function guestListSearch() {
+	$guestTypeId = ($_REQUEST['guest_type_id'] > 0 ) ? $_REQUEST['guest_type_id'] : null;
+	$hasReplied = ($_REQUEST['has_replied'] != '-' ) ? $_REQUEST['has_replied'] : null;
+	$this['guests'] = Guest::getGuestListComplete($hasReplied, $guestTypeId);
+    }//guestListSearch()
 
 }//clas AdminController
