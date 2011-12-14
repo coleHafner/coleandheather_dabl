@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="center">
-	    <?php load_view('widgets/button', $params); ?>
+	    <?php load_view('widgets/button', $params['login-button']); ?>
 	</div>
 
     </form>

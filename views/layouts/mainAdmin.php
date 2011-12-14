@@ -54,7 +54,6 @@
 		    <?php echo $content; ?>
 		</div>
 <?php }else {
-    $params['selected-button-key'] = 'login-button';
      load_view('admin/module-login', $params);
 } ?>
  		<div class="clear"></div>

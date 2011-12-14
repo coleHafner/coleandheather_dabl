@@ -1,5 +1,5 @@
 <div class="title_button_container">
-  <?php load_view('widgets/button-round', $params); ?>
+  <?php load_view('widgets/button-round', $params['button']); ?>
 </div>
 
 <div id="guest_list_filter" class="margin_10_top padder_10 rounded_corners bg_color_light_tan" style="display:none;">
@@ -43,27 +43,7 @@
 	    </div>
 
 	    <div style="position:relative;width:30%;float:left;">
-		' . Common::getHtml( "get-form-buttons", array(
-		'left' => array(
-		'pk_name' => "guest_list_id",
-		'pk_value' => 0,
-		'process' => "apply_filter",
-		'id' => "guest_list",
-		'button_value' => "Filter",
-		'extra_style' => 'style="width:41px;"' ),
-
-		'right' => array(
-		'pk_name' => "guest_list_id",
-		'pk_value' => 0,
-		'process' => "cancel_filter",
-		'id' => "guest_list",
-		'button_value' => "Cancel",
-		'extra_style' => 'style="width:41px;"' ),
-
-		'table_style' => 'style="margin-top:18px;margin-left:15px;"'
-
-		)
-		) . '
+		<?php load_view('widgets/button-form', $params['form-buttons']); ?>
 	    </div>
 
 	    <div class="clear"></div>

@@ -24,10 +24,10 @@ define('LOGS_DIR', APP_DIR . 'logs/');
 define( 'SITE_NAME', 'nateandrebekah.com' );
 
 //wedding date
-define('THE_BIG_DAY', 'August 27, 2012');
+define('THE_BIG_DAY', 'August 25, 2012');
 
 //rsvp by
-define('RSVP_DEADLINE', 'February 27, 2012');
+define('RSVP_DEADLINE', 'February 25, 2012');
 
 
 $becky = '114983953304699001694';
