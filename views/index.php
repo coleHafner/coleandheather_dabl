@@ -37,7 +37,7 @@
     </div>
 
     <div class="index_canvas center">
-	<div style="position:relative;top:135px;">
+	<div style="position:relative;top:125px;">
 	    <div class="sub_header grey">
 		Reception:
 	    </div>

@@ -35,7 +35,16 @@ if (is_array($guests) && count($guests) > 0) {
 	    <?php echo $has_replied; ?>
 	</td>
 	<td class="padder">
+	    <table class="guest_options">
+		<tr>
+		    <td>
 	    <?php echo $is_attending; ?>
+		    </td>
+		    <td class="options">
+			<a href="#edit">Edit</a>&nbsp;|&nbsp;<a href=""#delete">Delete</a>
+		</tr>
+	    </table>
+
 	</td>
     </tr>
 
