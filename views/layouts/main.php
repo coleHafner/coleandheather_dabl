@@ -97,11 +97,15 @@
 	</div>
 	<!--/canvas container-->
 
-	<!--footer-->
-	<div class="canvas_spacer_bottom">
-	    &nbsp;
+	<!--spacer-->
+	<div class="canvas_spacer_bottom footer color_white">
+	    &copy; 2011 <a href="http://colehafner.com" target="_blank">Cole Hafner</a>
+	    <span class="green_nav bold">&nbsp;|&nbsp;</span>
+	    Powered by <a href="https://github.com/ManifestWebDesign/DABL" target="blank">Dabl</a>
 	</div>
-	<!--/footer-->
+	<!--/spacer-->
+
+
 
     </div>
     <!--/page-->
