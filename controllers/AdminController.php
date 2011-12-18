@@ -74,4 +74,10 @@ class AdminController extends LoggedInApplicationController {
 	$this['guests'] = Guest::getGuestListComplete($hasReplied, $guestTypeId);
     }//guestListSearch()
 
+    function guestShowForm(){
+	$this['activeRecord'] = Guest::retrieveByPK($_REQUEST['pk']);
+	$this['action'] = $_REQUEST['action'];
+    }//guestDelete()
+
+
 }//clas AdminController

@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="<?php echo site_url('/css/themes/cah/extensions/jquery-ui-1.8.1.custom.css' ); ?>" type="text/css" />
     <link rel="stylesheet" href="<?php echo site_url('/css/commonAdmin.css');?>" type="text/css" />
 
+    <!--
     <script type="text/javascript" src="<?php echo site_url('/js/extensions/jquery-1.4.2.js');?>"></script>
     <script type="text/javascript" src="<?php echo site_url('/js/extensions/jquery-ui-1.8.1.custom.min.js');?>"></script>
+    -->
+    <script type="text/javascript" src="<?php echo site_url('/js/jquery-ui/js/jquery-1.6.2.min.js');?>"></script>
+    <script type="text/javascript" src="<?php echo site_url('/js/jquery-ui/js/jquery-ui-1.8.16.custom.min.js');?>"></script>
 
     <script type="text/javascript" src="<?php echo site_url('/js/halfnerd/jquery.halfnerd.common.js');?>"></script>
     <script type="text/javascript" src="<?php echo site_url('/js/halfnerd/jquery.halfnerd.auth.js');?>"></script>

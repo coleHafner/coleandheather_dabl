@@ -4,63 +4,63 @@
  * @author	Hafner
  * @since	20101215
  */
- 
+
 $(document).ready(function(){
-	
+
 	//init pickers
 	//initColorbox();
     //initDatepickers();
     //initTimepickers();
-    
+
     //submit input
 	$( ".input_clear" )
 		.live( "click", function(){
 	    	clearInputValue( $( this ) );
 	    })
-	    
+
 	  	.live( "focus", function(){
 	    	clearInputValue( $( this ) );
 	    })
-	
-	
+
+
 		.live( "blur", function(){
 			restoreInputValue( $( this ) );
 		});
-    	
+
     $( ".admin_button" )
     	.live( "mouseenter", function( event ){
-    	
+
     		//cancel hover
     		event.preventDefault();
-    		
+
     		if( hasAttr( $( this ), "active" ) == false )
     		{
     			$( this ).removeClass( "border_color_white" ).addClass( "no_hover border_color_orange" );
     		}
     	})
-    	
+
     	.live( "mouseleave", function(){
     		if( hasAttr( $( this ), "active" ) == false )
     		{
     			$( this ).removeClass( "no_hover border_color_orange" ).addClass( "border_color_white" );
     		}
     	});
-    	
+
     $( ".button" )
     	.live( "mouseenter", function(){
 			$( this ).removeClass( "bg_color_white" ).addClass( "bg_color_orange" );
 			$( this ).css( "color", "#FFF" );
     	})
-    	
+
     	.live( "mouseleave", function(){
     		$( this ).removeClass( "bg_color_orange" ).addClass( "bg_color_white" );
 			$( this ).css( "color", "" );
     	});
-    	
+
     $( ".item_container" )
     	.live( "mouseenter", function(){
 
-    		if( hasAttr( $( this ), "hover_enabled" ) && 
+    		if( hasAttr( $( this ), "hover_enabled" ) &&
     			$( this ).attr( "hover_enabled" ) == "1" )
     		{
 	    		//remove bg color and buttons from other article_containers
@@ -68,16 +68,16 @@ $(document).ready(function(){
 	    		$( ".item_container" ).each( function(){
 	    			$( this ).find( "#item_control" ).hide();
 	    		});
-	    		
+
 	    		//show selected bg color and admin options for current item_container
 	    		$( this ).removeClass( "bg_color_light_tan" ).addClass( "bg_color_tan" );
 	    		$( this ).find( "#item_control" ).show();
 	    	}
     	})
-    	
+
     	.live( "mouseleave", function(){
-    	
-    		if( hasAttr( $( this ), "hover_enabled" ) && 
+
+    		if( hasAttr( $( this ), "hover_enabled" ) &&
     			$( this ).attr( "hover_enabled" ) == "1" )
     		{
 	    		//change bg color to normal and hide admin options
@@ -85,9 +85,9 @@ $(document).ready(function(){
 	    		$( this ).find( "#item_control" ).hide();
 	    	}
     	});
-    	
+
 });
-	
+
 /**********************************************************************************************************************************
 common functions
 **********************************************************************************************************************************/
@@ -100,17 +100,17 @@ function initDatepickers()
 	});
 
 	$( ".datepicker_input" ).datepicker();
-	
+
 }//initDatepickers()
 
 function initTimepickers()
-{	
+{
 	$( ".timepicker_input" ).timepicker({
 		ampm: true,
 		stepMinute: 5,
 		timeFormat: 'h:mm TT'
 	});
-	
+
 }//initTimepickers()
 
 function initColorbox()
@@ -119,7 +119,7 @@ function initColorbox()
     $.fn.colorbox.settings.bgOpacity = "0.7";
     $.fn.colorbox.settings.contentCurrent = "({current}/{total})";
     $.fn.colorbox.settings.current = "Member {current} of {total}";
-    
+
 }//initColorbox()
 
 function closeColorbox( reload )
@@ -129,9 +129,9 @@ function closeColorbox( reload )
 	{
 		reload_cmd = 'window.location.reload();';
 	}
-	
+
 	setTimeout( '$.colorbox.close();' + reload_cmd, 1000 );
-	
+
 }//closeColorbox()
 
 
@@ -146,19 +146,19 @@ function showMessage( message, message_status, callback )
 	{
 		$( "#form_result_message" ).remove();
 	}
-	
+
 	callback = ( typeof( callback ) == "undefined" ) ? function(){} : callback;
 	var bg_color = ( message_status == 1 ) ? "bg_color_accent" : "bg_color_red";
-	
+
 	$( 'body' ).append( '<div class="form_result_message ' + bg_color + ' center header font_color_white" id="form_result_message">' + message + '</div>' );
-	
+
 	$( "#form_result_message" ).delay( 1500 ).fadeOut( "slow", function(){
-		
+
 		$( this ).remove();
-		
+
 		callback();
 	});
-	
+
 }//showMessage()
 
 function trimLastCharFromString( string )
@@ -166,9 +166,9 @@ function trimLastCharFromString( string )
 	//set vars
 	var second_to_last_char = string.length - 1;
 	var return_string = string.substr( 0, second_to_last_char );
-	
+
 	return return_string;
-	
+
 }//trimLastCharFromString()
 
 function countString( string, delim )
@@ -176,34 +176,34 @@ function countString( string, delim )
 	//set vars
 	var string_array = string.split( delim );
 	var return_value = string_array.length;
-	
+
 	return return_value;
-	
+
 }//countString()
 
 function clearInputValue( el )
 {
 	var clear_if = el.attr( "clear_if" ).toLowerCase();
 	var cur_val = el.val().toLowerCase();
-	
+
 	if( clear_if == cur_val )
-	{	
+	{
 		//update value
-		el.val( "" );			
+		el.val( "" );
 	}
-	
+
 	//clear result
 	if( typeof( $( "#result" ) ) != undefined )
 	{
 		$( "#result" ).html( "" );
 	}
-	
+
 }//clearInputValue()
 
 function restoreInputValue( el )
 {
 	if( el.val() == "" )
-	{	
+	{
 		//update value
 		el.val( el.attr( "clear_if" ) );
 	}
@@ -213,13 +213,13 @@ function listToString( list_array, delim_char )
 {
 	var list_string = "";
 	var delim_char = ( typeof( delim_char ) == "undefined" ) ? "^" : delim_char;
-	
+
 	for( var i in list_array )
 	{
 		var delim = ( i == ( list_array.length - 1 ) ) ? "" : delim_char;
 		list_string += list_array[i].toString().replace( "item_", "" ) + delim;
 	}
-	
+
 	return list_string;
 
 }//listToString();
@@ -230,27 +230,27 @@ function validateImageFile( el_id )
 	var return_value = false;
 	var valid_extensions = [ "png", "gif", "jpg", "jpeg" ];
 	var file = $( el_id ).val();
-	
+
 	//check strlen
 	if( file.length == 0 )
 	{
 		return_value = "You must select a file.";
 	}
-	
+
 	if( return_value == false )
 	{
 		var val_split = file.split( "." );
 		var last_element = val_split.length - 1;
 		var extension = val_split[last_element];
-		
+
 		if( $.inArray( extension.toLowerCase(), valid_extensions ) == -1 )
 		{
 			return_value = "File must be an image.";
 		}
 	}
-	
+
 	return return_value;
-	
+
 }//validateFileUploadForm()
 
 /**********************************************************************************************************************************
@@ -260,9 +260,9 @@ other functions
 function showLoader( element, style )
 {
 	var loader_html = '<div class="loader_div"' + style + '><img src="/images/ajax-loader.gif"/></div>';
-	
+
 	$( element ).html( loader_html );
-	
+
 }//showLoader()
 
 function hasAttr( el, attr_name )
@@ -284,6 +284,57 @@ function appendAdminOptions( el, type, pk_id )
 			article.showAdminOptions( el );
 			break;
 	}
-	
+
 }//appendAdminOptions()
 
+function getDialog(opts) {
+
+    var pk = opts.attr('pk');
+    var type = opts.attr('type');
+    var action = opts.attr('action');
+    var buttons = [
+	{text:'Cancel', click:function(){ $(this).dialog('close');} },
+	{text:action.charAt(0).toUpperCase() + action.slice(1), click: function(opts){ doAction(opts);} }
+    ];
+
+    return $('<div id="' + getDialogId(opts) + '"></div>' ).dialog({
+	title: getDialogTitle(opts),
+	autoOpen: false,
+	buttons: buttons
+    });
+}//getDialog()
+
+function getDialogId(opts) {
+    var pk = opts.attr('pk');
+    var type = opts.attr('type');
+    var action = opts.attr('action');
+    return type + '-' + action + '-' + pk;
+}//getDialogId()
+
+function getDialogTitle(opts) {
+    var pk = opts.attr('pk');
+    var type = opts.attr('type');
+    var action = opts.attr('action');
+    return action.charAt(0).toUpperCase() + action.slice(1) + ' ' + type.charAt(0).toUpperCase() + type.slice(1);
+}//getDialogTitle()
+
+function doAction(opts) {
+    alert('here');
+    var pk = opts.attr('pk');
+    var type = opts.attr('type');
+    var action = opts.attr('action');
+
+    switch(type) {
+	case 'guest':
+	    switch(action) {
+		case 'edit':
+		    editGuest(opts);
+		    break;
+
+	       case 'delete':
+		   deleteGuest(opts);
+		   break;
+	    }
+	    break;
+    }
+}//doAction()

@@ -41,7 +41,9 @@ if (is_array($guests) && count($guests) > 0) {
 	    <?php echo $is_attending; ?>
 		    </td>
 		    <td class="options">
-			<a href="#edit">Edit</a>&nbsp;|&nbsp;<a href=""#delete">Delete</a>
+			<div class="ui-icon ui-icon-close guest-record" type="guest" process="show-form" action="delete" pk="<?php echo $g->getGuestID(); ?>" style="float:right;margin-left:12px;">&nbsp;</div>
+			<div class="ui-icon ui-icon-pencil guest-record" type="guest" process="show-form" action="edit" pk="<?php echo $g->getGuestID(); ?>" style="float:right;">&nbsp;</div>
+		    </td>
 		</tr>
 	    </table>
 

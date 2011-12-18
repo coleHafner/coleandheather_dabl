@@ -873,16 +873,3 @@ Admin
     position:relative;
     width:100%;
 }
-
-.guest_options td.options {
-    font-size:11px;
-    text-align:right;
-    color:#000;
-}
-
-.guest_options td.options a {
-    font-size:11px;
-    text-align:right;
-    color:#FF6103;
-}
-
