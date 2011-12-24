@@ -19,6 +19,7 @@
 <?php
 if (is_array($guests) && count($guests) > 0) {
     foreach ($guests as $i => $g) {
+	//$bg_class = '';
 	$is_attending = "-";
 	$bg_class = ( $i % 2 ) ? 'class="bg_color_light_tan"' : '';
 	$has_replied = (!is_null($g->getUpdateTimestamp()) ) ? "Yes" : "No";
@@ -27,7 +28,7 @@ if (is_array($guests) && count($guests) > 0) {
 	    $is_attending = ( $g->getIsAttending() ) ? "Yes" : "No";
 	}
 ?>
-    <tr <?php echo $bg_class; ?>>
+    <tr <?php echo $bg_class; ?> id="guest-row-<?php echo $g->getGuestID(); ?>">
 	<td class="padder">
 	    <? echo $g->getLastName() . ', ' . $g->getFirstName(); ?>
 	</td>
@@ -41,8 +42,8 @@ if (is_array($guests) && count($guests) > 0) {
 	    <?php echo $is_attending; ?>
 		    </td>
 		    <td class="options">
-			<div class="ui-icon ui-icon-close guest-record" type="guest" process="show-form" action="delete" pk="<?php echo $g->getGuestID(); ?>" style="float:right;margin-left:12px;">&nbsp;</div>
-			<div class="ui-icon ui-icon-pencil guest-record" type="guest" process="show-form" action="edit" pk="<?php echo $g->getGuestID(); ?>" style="float:right;">&nbsp;</div>
+			<a href="#" class="ui-icon ui-icon-close guest-record" type="guest" process="show-form" action="delete" pk="<?php echo $g->getGuestID(); ?>" style="float:right;margin-left:5px;">&nbsp;</a>
+			<a href="#" class="ui-icon ui-icon-pencil guest-record" type="guest" process="show-form" action="edit" pk="<?php echo $g->getGuestID(); ?>" style="float:right;">&nbsp;</a>
 		    </td>
 		</tr>
 	    </table>

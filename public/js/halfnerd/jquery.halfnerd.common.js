@@ -7,84 +7,84 @@
 
 $(document).ready(function(){
 
-	//init pickers
-	//initColorbox();
+    //init pickers
+    //initColorbox();
     //initDatepickers();
     //initTimepickers();
 
     //submit input
-	$( ".input_clear" )
-		.live( "click", function(){
-	    	clearInputValue( $( this ) );
-	    })
+    $( ".input_clear" )
+    .live( "click", function(){
+	clearInputValue( $( this ) );
+    })
 
-	  	.live( "focus", function(){
-	    	clearInputValue( $( this ) );
-	    })
+    .live( "focus", function(){
+	clearInputValue( $( this ) );
+    })
 
 
-		.live( "blur", function(){
-			restoreInputValue( $( this ) );
-		});
+    .live( "blur", function(){
+	restoreInputValue( $( this ) );
+    });
 
     $( ".admin_button" )
-    	.live( "mouseenter", function( event ){
+    .live( "mouseenter", function( event ){
 
-    		//cancel hover
-    		event.preventDefault();
+	//cancel hover
+	event.preventDefault();
 
-    		if( hasAttr( $( this ), "active" ) == false )
-    		{
-    			$( this ).removeClass( "border_color_white" ).addClass( "no_hover border_color_orange" );
-    		}
-    	})
+	if( hasAttr( $( this ), "active" ) == false )
+	{
+	    $( this ).removeClass( "border_color_white" ).addClass( "no_hover border_color_orange" );
+	}
+    })
 
-    	.live( "mouseleave", function(){
-    		if( hasAttr( $( this ), "active" ) == false )
-    		{
-    			$( this ).removeClass( "no_hover border_color_orange" ).addClass( "border_color_white" );
-    		}
-    	});
+    .live( "mouseleave", function(){
+	if( hasAttr( $( this ), "active" ) == false )
+	{
+	    $( this ).removeClass( "no_hover border_color_orange" ).addClass( "border_color_white" );
+	}
+    });
 
     $( ".button" )
-    	.live( "mouseenter", function(){
-			$( this ).removeClass( "bg_color_white" ).addClass( "bg_color_orange" );
-			$( this ).css( "color", "#FFF" );
-    	})
+    .live( "mouseenter", function(){
+	$( this ).removeClass( "bg_color_white" ).addClass( "bg_color_orange" );
+	$( this ).css( "color", "#FFF" );
+    })
 
-    	.live( "mouseleave", function(){
-    		$( this ).removeClass( "bg_color_orange" ).addClass( "bg_color_white" );
-			$( this ).css( "color", "" );
-    	});
+    .live( "mouseleave", function(){
+	$( this ).removeClass( "bg_color_orange" ).addClass( "bg_color_white" );
+	$( this ).css( "color", "" );
+    });
 
     $( ".item_container" )
-    	.live( "mouseenter", function(){
+    .live( "mouseenter", function(){
 
-    		if( hasAttr( $( this ), "hover_enabled" ) &&
-    			$( this ).attr( "hover_enabled" ) == "1" )
-    		{
-	    		//remove bg color and buttons from other article_containers
-	    		$( ".item_container" ).removeClass( "bg_color_tan" ).addClass( "bg_color_light_tan" );
-	    		$( ".item_container" ).each( function(){
-	    			$( this ).find( "#item_control" ).hide();
-	    		});
+	if( hasAttr( $( this ), "hover_enabled" ) &&
+	    $( this ).attr( "hover_enabled" ) == "1" )
+	    {
+	    //remove bg color and buttons from other article_containers
+	    $( ".item_container" ).removeClass( "bg_color_tan" ).addClass( "bg_color_light_tan" );
+	    $( ".item_container" ).each( function(){
+		$( this ).find( "#item_control" ).hide();
+	    });
 
-	    		//show selected bg color and admin options for current item_container
-	    		$( this ).removeClass( "bg_color_light_tan" ).addClass( "bg_color_tan" );
-	    		$( this ).find( "#item_control" ).show();
-	    	}
-    	})
+	    //show selected bg color and admin options for current item_container
+	    $( this ).removeClass( "bg_color_light_tan" ).addClass( "bg_color_tan" );
+	    $( this ).find( "#item_control" ).show();
+	}
+    })
 
-    	.live( "mouseleave", function(){
+    .live( "mouseleave", function(){
 
-    		if( hasAttr( $( this ), "hover_enabled" ) &&
-    			$( this ).attr( "hover_enabled" ) == "1" )
-    		{
-	    		//change bg color to normal and hide admin options
-	    		$( this ).removeClass( "bg_color_tan" ).addClass( "bg_color_light_tan" );
-	    		$( this ).find( "#item_control" ).hide();
-	    	}
-    	});
+	if( hasAttr( $( this ), "hover_enabled" ) &&
+	    $( this ).attr( "hover_enabled" ) == "1" )
+	    {
+	    //change bg color to normal and hide admin options
+	    $( this ).removeClass( "bg_color_tan" ).addClass( "bg_color_light_tan" );
+	    $( this ).find( "#item_control" ).hide();
+	}
+    });
 
 });
 
@@ -95,21 +95,21 @@ common functions
 function initDatepickers()
 {
     $.datepicker.setDefaults( {
-		dateFormat: "mm-dd-yy",
-		buttonImageOnly:false
-	});
+	dateFormat: "mm-dd-yy",
+	buttonImageOnly:false
+    });
 
-	$( ".datepicker_input" ).datepicker();
+    $( ".datepicker_input" ).datepicker();
 
 }//initDatepickers()
 
 function initTimepickers()
 {
-	$( ".timepicker_input" ).timepicker({
-		ampm: true,
-		stepMinute: 5,
-		timeFormat: 'h:mm TT'
-	});
+    $( ".timepicker_input" ).timepicker({
+	ampm: true,
+	stepMinute: 5,
+	timeFormat: 'h:mm TT'
+    });
 
 }//initTimepickers()
 
@@ -124,13 +124,13 @@ function initColorbox()
 
 function closeColorbox( reload )
 {
-	var reload_cmd = "";
-	if( reload == 1 )
-	{
-		reload_cmd = 'window.location.reload();';
-	}
+    var reload_cmd = "";
+    if( reload == 1 )
+    {
+	reload_cmd = 'window.location.reload();';
+    }
 
-	setTimeout( '$.colorbox.close();' + reload_cmd, 1000 );
+    setTimeout( '$.colorbox.close();' + reload_cmd, 1000 );
 
 }//closeColorbox()
 
@@ -141,115 +141,115 @@ form functions
 
 function showMessage( message, message_status, callback )
 {
-	//hide message
-	if( $( "#form_result_message" ).length > 0 )
-	{
-		$( "#form_result_message" ).remove();
-	}
+    //hide message
+    if( $( "#form_result_message" ).length > 0 )
+    {
+	$( "#form_result_message" ).remove();
+    }
 
-	callback = ( typeof( callback ) == "undefined" ) ? function(){} : callback;
-	var bg_color = ( message_status == 1 ) ? "bg_color_accent" : "bg_color_red";
+    callback = ( typeof( callback ) == "undefined" ) ? function(){} : callback;
+    var bg_color = ( message_status == 1 ) ? "bg_color_accent" : "bg_color_red";
 
-	$( 'body' ).append( '<div class="form_result_message ' + bg_color + ' center header font_color_white" id="form_result_message">' + message + '</div>' );
+    $( 'body' ).append( '<div class="form_result_message ' + bg_color + ' center header font_color_white" id="form_result_message">' + message + '</div>' );
 
-	$( "#form_result_message" ).delay( 1500 ).fadeOut( "slow", function(){
+    $( "#form_result_message" ).delay( 1500 ).fadeOut( "slow", function(){
 
-		$( this ).remove();
+	$( this ).remove();
 
-		callback();
-	});
+	callback();
+    });
 
 }//showMessage()
 
 function trimLastCharFromString( string )
 {
-	//set vars
-	var second_to_last_char = string.length - 1;
-	var return_string = string.substr( 0, second_to_last_char );
+    //set vars
+    var second_to_last_char = string.length - 1;
+    var return_string = string.substr( 0, second_to_last_char );
 
-	return return_string;
+    return return_string;
 
 }//trimLastCharFromString()
 
 function countString( string, delim )
 {
-	//set vars
-	var string_array = string.split( delim );
-	var return_value = string_array.length;
+    //set vars
+    var string_array = string.split( delim );
+    var return_value = string_array.length;
 
-	return return_value;
+    return return_value;
 
 }//countString()
 
 function clearInputValue( el )
 {
-	var clear_if = el.attr( "clear_if" ).toLowerCase();
-	var cur_val = el.val().toLowerCase();
+    var clear_if = el.attr( "clear_if" ).toLowerCase();
+    var cur_val = el.val().toLowerCase();
 
-	if( clear_if == cur_val )
-	{
-		//update value
-		el.val( "" );
-	}
+    if( clear_if == cur_val )
+    {
+	//update value
+	el.val( "" );
+    }
 
-	//clear result
-	if( typeof( $( "#result" ) ) != undefined )
-	{
-		$( "#result" ).html( "" );
-	}
+    //clear result
+    if( typeof( $( "#result" ) ) != undefined )
+    {
+	$( "#result" ).html( "" );
+    }
 
 }//clearInputValue()
 
 function restoreInputValue( el )
 {
-	if( el.val() == "" )
-	{
-		//update value
-		el.val( el.attr( "clear_if" ) );
-	}
+    if( el.val() == "" )
+    {
+	//update value
+	el.val( el.attr( "clear_if" ) );
+    }
 }//restoreInputValue()
 
 function listToString( list_array, delim_char )
 {
-	var list_string = "";
-	var delim_char = ( typeof( delim_char ) == "undefined" ) ? "^" : delim_char;
+    var list_string = "";
+    var delim_char = ( typeof( delim_char ) == "undefined" ) ? "^" : delim_char;
 
-	for( var i in list_array )
-	{
-		var delim = ( i == ( list_array.length - 1 ) ) ? "" : delim_char;
-		list_string += list_array[i].toString().replace( "item_", "" ) + delim;
-	}
+    for( var i in list_array )
+    {
+	var delim = ( i == ( list_array.length - 1 ) ) ? "" : delim_char;
+	list_string += list_array[i].toString().replace( "item_", "" ) + delim;
+    }
 
-	return list_string;
+    return list_string;
 
 }//listToString();
 
 function validateImageFile( el_id )
 {
-	//set vars
-	var return_value = false;
-	var valid_extensions = [ "png", "gif", "jpg", "jpeg" ];
-	var file = $( el_id ).val();
+    //set vars
+    var return_value = false;
+    var valid_extensions = [ "png", "gif", "jpg", "jpeg" ];
+    var file = $( el_id ).val();
 
-	//check strlen
-	if( file.length == 0 )
+    //check strlen
+    if( file.length == 0 )
+    {
+	return_value = "You must select a file.";
+    }
+
+    if( return_value == false )
+    {
+	var val_split = file.split( "." );
+	var last_element = val_split.length - 1;
+	var extension = val_split[last_element];
+
+	if( $.inArray( extension.toLowerCase(), valid_extensions ) == -1 )
 	{
-		return_value = "You must select a file.";
+	    return_value = "File must be an image.";
 	}
+    }
 
-	if( return_value == false )
-	{
-		var val_split = file.split( "." );
-		var last_element = val_split.length - 1;
-		var extension = val_split[last_element];
-
-		if( $.inArray( extension.toLowerCase(), valid_extensions ) == -1 )
-		{
-			return_value = "File must be an image.";
-		}
-	}
-
-	return return_value;
+    return return_value;
 
 }//validateFileUploadForm()
 
@@ -259,31 +259,31 @@ other functions
 
 function showLoader( element, style )
 {
-	var loader_html = '<div class="loader_div"' + style + '><img src="/images/ajax-loader.gif"/></div>';
+    var loader_html = '<div class="loader_div"' + style + '><img src="/images/ajax-loader.gif"/></div>';
 
-	$( element ).html( loader_html );
+    $( element ).html( loader_html );
 
 }//showLoader()
 
 function hasAttr( el, attr_name )
 {
-	return ( typeof( el.attr( attr_name ) ) !== "undefined" ) ? true : false;
+    return ( typeof( el.attr( attr_name ) ) !== "undefined" ) ? true : false;
 }//hasAttr
 
 function reloadPage( delay )
 {
-	window.location.reload( delay );
+    window.location.reload( delay );
 }//reloadPage()
 
 function appendAdminOptions( el, type, pk_id )
 {
-	switch( type.toLowerCase() )
-	{
-		case "article":
-			var article = new Article( pk_id );
-			article.showAdminOptions( el );
-			break;
-	}
+    switch( type.toLowerCase() )
+    {
+	case "article":
+	    var article = new Article( pk_id );
+	    article.showAdminOptions( el );
+	    break;
+    }
 
 }//appendAdminOptions()
 
@@ -292,16 +292,28 @@ function getDialog(opts) {
     var pk = opts.attr('pk');
     var type = opts.attr('type');
     var action = opts.attr('action');
+    var actionText = action.charAt(0).toUpperCase() + action.slice(1);
+    var chosenActionText = (actionText == 'Edit' ) ? 'Save' : actionText;
     var buttons = [
-	{text:'Cancel', click:function(){ $(this).dialog('close');} },
-	{text:action.charAt(0).toUpperCase() + action.slice(1), click: function(opts){ doAction(opts);} }
-    ];
+    {
+	text:'Cancel',
+	click:function(){
+	    $(this).dialog('close');
+	}
+    },
+{
+    text:chosenActionText,
+    click: function(){
+	doAction(getDialogId(opts));
+    }
+}
+];
 
-    return $('<div id="' + getDialogId(opts) + '"></div>' ).dialog({
-	title: getDialogTitle(opts),
-	autoOpen: false,
-	buttons: buttons
-    });
+return $('<div id="' + getDialogId(opts) + '"></div>' ).dialog({
+    title: getDialogTitle(opts),
+    autoOpen: false,
+    buttons: buttons
+});
 }//getDialog()
 
 function getDialogId(opts) {
@@ -314,27 +326,37 @@ function getDialogId(opts) {
 function getDialogTitle(opts) {
     var pk = opts.attr('pk');
     var type = opts.attr('type');
-    var action = opts.attr('action');
+    var action = (pk == 0) ? 'Add' : opts.attr('action');
     return action.charAt(0).toUpperCase() + action.slice(1) + ' ' + type.charAt(0).toUpperCase() + type.slice(1);
 }//getDialogTitle()
 
-function doAction(opts) {
-    alert('here');
-    var pk = opts.attr('pk');
-    var type = opts.attr('type');
-    var action = opts.attr('action');
+function doAction(optString) {
+
+    var opts = extractActionVars(optString);
+    var action = opts.action;
+    var type = opts.type;
+    var pk = opts.pk;
 
     switch(type) {
 	case 'guest':
 	    switch(action) {
 		case 'edit':
-		    editGuest(opts);
+		    editGuest(pk);
 		    break;
 
-	       case 'delete':
-		   deleteGuest(opts);
-		   break;
+		case 'delete':
+		    deleteGuest(pk);
+		    break;
 	    }
 	    break;
     }
 }//doAction()
+
+function extractActionVars(actionString) {
+    var stringSplit = actionString.split('-');
+    return {
+	type:stringSplit[0],
+	action:stringSplit[1],
+	pk:stringSplit[2]
+    };
+}//extractActionVars

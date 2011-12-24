@@ -198,8 +198,15 @@ class Guest extends baseGuest {
 	}
 
 	//echo $q;die;
-	return Guest::doSelect($q);
+	return self::doSelect($q);
 
     }//getGuestListComplete()
+
+    public static function getAllParents() {
+	$q = new Query;
+	$q->add('parent_guest_id', 0);
+	$q->orderBy('last_name', Query::ASC);
+	return self::doSelect($q);
+    }//getAllParents()
 
 }//class Guest

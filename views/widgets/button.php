@@ -1,4 +1,5 @@
 <?php
+//print_r($params);die;
 $style = ( array_key_exists("extra_style", $params) ) ? $params['extra_style'] : "";
 $extra_classes = ( array_key_exists("extra_classes", $params) ) ? $params['extra_classes'] : "";
 

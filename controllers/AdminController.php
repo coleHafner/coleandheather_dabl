@@ -38,11 +38,14 @@ class AdminController extends LoggedInApplicationController {
 	$this['guests'] = Guest::getGuestListComplete();
 
 	$this['button'] = array(
-	    'id' => "guest_list",
-	    'process' => "show_filter",
-	    'pk_name' => "guest_list_id",
+	    'id' => null,
+	    'process' => "edit",
+	    'pk_name' => "pk",
 	    'pk_value' => "0",
-	    'button_value' => "Show Filter",
+	    'action' => 'edit',
+	    'type' => 'guest',
+	    'button_value' => "Add Guest",
+	    'extra_classes' => 'guest-record',
 	    'inner_div_style' => 'style="padding-top:4px;padding-left:1px;"',
 	    'link_style' => 'style="float:right;width:70px;font-size:10px;"',
 	);
@@ -74,10 +77,44 @@ class AdminController extends LoggedInApplicationController {
 	$this['guests'] = Guest::getGuestListComplete($hasReplied, $guestTypeId);
     }//guestListSearch()
 
-    function guestShowForm(){
-	$this['activeRecord'] = Guest::retrieveByPK($_REQUEST['pk']);
-	$this['action'] = $_REQUEST['action'];
+    function guestEdit() {
+
+	if($_REQUEST['pk'] > 0) {
+	    $activeRecord = Guest::retrieveByPK($_REQUEST['pk']);
+	}else {
+	     $activeRecord = new Guest;
+	     $activeRecord->setGuestId(0);
+	}
+
+	if(isset($_REQUEST['showForm'])) {
+	    $this['activeRecord'] = $activeRecord;
+	    $this['action'] = $_REQUEST['action'];
+	}else {
+	    $isAttending = (isset($_REQUEST['is_attending'])) ? 1 : 0;
+	    $activeRecord->setFirstName($_REQUEST['first_name']);
+	    $activeRecord->setLastName($_REQUEST['last_name']);
+	    $activeRecord->setIsAttending($isAttending);
+	    $result = $activeRecord->save();
+	    echo "this is result: " . $result;
+	    die;
+	}
+    }//guestEdit()
+
+    function guestDelete() {
+
+	$activeRecord = Guest::retrieveByPK($_REQUEST['pk']);
+
+	if(isset($_REQUEST['showForm'])) {
+	    $this['activeRecord'] = $activeRecord;
+	    $this['action'] = $_REQUEST['action'];
+	}else {
+	    $activeRecord->delete();
+	    die;
+	}
     }//guestDelete()
 
+    function guestAddType() {
 
-}//clas AdminController
+    }//guestAddType()
+
+}//class AdminController
