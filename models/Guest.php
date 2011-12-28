@@ -2,32 +2,6 @@
 
 class Guest extends baseGuest {
 
-    static function validateActivationCode($code) {
-	$q = new Query;
-	$q->add('activation_code', $code);
-	$q->add('activation_code', $code, Query::IS_NOT_NULL);
-	return ( self::doCount($q) > 0 ) ? true : false;
-    }//validateActivationCode()
-
-    static function getGuestFromActivationCode($code) {
-	$q = new Query;
-	$q->add('activation_code', $code, Query::LIKE);
-	return self::doSelect($q);
-    }//getGuestFromActivationCode()
-
-    static function validateGuestId($guest_id) {
-	$q = new Query;
-	$q->add('guest_id', $guest_id);
-	return ( self::doCount() > 0 ) ? true : false;
-    }//validateGuestId()
-
-    static function getGuestFromId($guest_id) {
-	$q = new Query;
-	$q->add('guest_id', $guest_id);
-	$result = Guest::doSelect($q);
-	return array_shift($result);
-    }//getGuestFromId()
-
     public function guestHasSpecialType() {
 	$q = new Query(GuestToGuestType::getTableName() . ' g2gt');
 	$q->join(GuestType::getTableName() . ' gt', 'gt.guest_type_id = g2gt.guest_type_id');
@@ -112,7 +86,18 @@ class Guest extends baseGuest {
 	return $return;
     }//getParentAddressId()
 
-    public static function getGuestQueries(){
+    function addGuestTypeId($gtId) {
+
+        if(!$this->getGuestId()) return false;
+
+        $g2gt = new GuestToGuestType;
+        $g2gt->setGuestId($this->getGuestId());
+        $g2gt->setGuestTypeId($gtId);
+        return $g2gt->save();
+
+    }//addGuestTypeId()
+
+    static function getGuestQueries(){
 	$qNew = new Query;
 	$qNew->add('is_new', 1);
 
@@ -150,7 +135,22 @@ class Guest extends baseGuest {
 	    'not_attending' => $qNotAttending,
 	);
 
-    }//getGuestQueries
+    }//getGuestQueries()
+
+    function isParent() {
+        return (bool)($this->getParentGuestId() == 0);
+    }//isParent()
+
+    function delete() {
+        parent::delete();
+
+        if($this->isParent()) {
+            foreach($this->getChildren() as $child) {
+                $child->delete();
+            }
+        }
+
+    }//delete()
 
     public static function getStats() {
 	$qs = self::getGuestQueries();
@@ -208,5 +208,42 @@ class Guest extends baseGuest {
 	$q->orderBy('last_name', Query::ASC);
 	return self::doSelect($q);
     }//getAllParents()
+
+    public static function validateActivationCode($code) {
+	$q = new Query;
+	$q->add('activation_code', $code);
+	$q->add('activation_code', $code, Query::IS_NOT_NULL);
+	return ( self::doCount($q) > 0 ) ? true : false;
+    }//validateActivationCode()
+
+    public static function getGuestFromActivationCode($code) {
+	$q = new Query;
+	$q->add('activation_code', $code, Query::LIKE);
+	return self::doSelect($q);
+    }//getGuestFromActivationCode()
+
+    public static function validateGuestId($guest_id) {
+	$q = new Query;
+	$q->add('guest_id', $guest_id);
+	return ( self::doCount() > 0 ) ? true : false;
+    }//validateGuestId()
+
+    public static function getGuestFromId($guest_id) {
+	$q = new Query;
+	$q->add('guest_id', $guest_id);
+	$result = Guest::doSelect($q);
+	return array_shift($result);
+    }//getGuestFromId()
+
+    public static function getUniqueActivationCode($salt) {
+        $raw =  md5($salt . date("F d\, Y H:i:s"));
+        $code = strtolower(substr($raw, 0, 10));
+
+        $q = new Query;
+        $q->add(Guest::ACTIVATION_CODE, $code);
+        if(Guest::doCount($q) > 0) { self::getUniqueActivationCode($salt); }
+
+        return $code;
+    }//getUniqueActivationCode()
 
 }//class Guest

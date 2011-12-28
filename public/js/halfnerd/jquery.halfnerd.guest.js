@@ -49,15 +49,17 @@ $( document ).ready( function(){
 	var action = opts.attr('action');
 	var process = opts.attr('process');
 
-	if(action == 'add-type') {
-	    $.post('/partial/admin/guest-add-type', {}, function(selectList){
-		$('#additional-guest-types').append(selectList);
-	    });
-	}else {
+	switch(action) {
+	    case'add-type':
+		var $list = $('#guest_type_list').clone();
+		$list.attr('id', '');
+		$('#additional-guest-types').append($list);
+		break;
 
-	    //show form
-	    var $di = getDialog(opts);
+	    default:
+		var $di = getDialog(opts);
 		$di.load('/partial/admin/' + type + '-' + action, {action:action, pk:pk, showForm:true}).dialog('open');
+		break;
 	}
     });
 
@@ -65,9 +67,29 @@ $( document ).ready( function(){
 });
 
 function editGuest(pk) {
-    alert('here: ' + pk);
+
+    var form_id = '#guest-edit-form-' + pk;
+    var $form = $(form_id);
+    var need = [];
+
     //validate
-    var $form = $('#guest-edit-form-' + pk);
+    if( $(form_id + ' input:text[name=first_name]').val().length == 0) {
+        need.push('First Name');
+    }
+
+    if( $(form_id + ' input:text[name=last_name]').val().length == 0) {
+        need.push('Last Name');
+    }
+
+    if(pk == 0 && $('#guest_type_list').val() == 0) {
+        need.push('Guest type');
+    }
+
+    if(need.length > 0) {
+        alert('Please fill in the following fields: ' + need.join(', '));
+        return false;
+    }
+
 
     $.post(
 	'/partial/admin/guest-edit?pk=' + pk,
@@ -75,7 +97,7 @@ function editGuest(pk) {
 	function(reply){
 	    alert('reply: ' + reply);
 	    var dialogId = '#guest-edit-' + pk;
-	    $( dialogId ).dialog('close');
+	    $( dialogId ).remove();
 	    guestListFilter();
 	}
     );

@@ -83,18 +83,38 @@ class AdminController extends LoggedInApplicationController {
 	    $activeRecord = Guest::retrieveByPK($_REQUEST['pk']);
 	}else {
 	     $activeRecord = new Guest;
-	     $activeRecord->setGuestId(0);
 	}
+
 
 	if(isset($_REQUEST['showForm'])) {
 	    $this['activeRecord'] = $activeRecord;
 	    $this['action'] = $_REQUEST['action'];
 	}else {
+	    print_r($_REQUEST);
+
+	    if($activeRecord->isNew()) {
+		$activeRecord->setParentGuestId($_REQUEST['parent_guest_id']);
+		$activeRecord->setInitialTimestamp(strtotime('now'));
+		$activeRecord->setRsvpThroughSite(0);
+		$activeRecord->setAddressId(0);
+
+		if($_REQUEST['parent_guest_id'] == 0) {
+                    $activeRecord->setActivationCode(Guest::getUniqueActivationCode($_REQUEST['first_name']));
+                }
+	    }
+
 	    $isAttending = (isset($_REQUEST['is_attending'])) ? 1 : 0;
 	    $activeRecord->setFirstName($_REQUEST['first_name']);
 	    $activeRecord->setLastName($_REQUEST['last_name']);
 	    $activeRecord->setIsAttending($isAttending);
 	    $result = $activeRecord->save();
+
+            if($activeRecord->isNew()) {
+                foreach($_REQUEST['guest_type_id'] as $gtId) {
+                    $activeRecord->addGuestTypeId($gtId);
+                }
+            }
+
 	    echo "this is result: " . $result;
 	    die;
 	}

@@ -1,5 +1,5 @@
 <div class="padder_10_top">
-    <form id="guest-edit-form-<?php echo $activeRecord->getGuestId(); ?>" >
+    <form id="guest-edit-form-<?php echo ($activeRecord->isNew()) ? 0 : $activeRecord->getGuestId(); ?>" >
 	<table >
 	    <tr>
 		<td style="text-align:right;">
@@ -17,7 +17,7 @@
 		    <input type="text" name="last_name" class="text_input" value="<?php echo $activeRecord->getLastName(); ?>"/>
 		</td>
 	    </tr>
-<?php if($activeRecord->getGuestId() == 0) { ?>
+<?php if($activeRecord->isNew()) { ?>
 	    <tr><td>&nbsp;</td></tr>
 	    <tr>
 		<td style="text-align:right;vertical-align:top;">

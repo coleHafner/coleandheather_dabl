@@ -1,12 +1,15 @@
 <table class="guest_list font_med_II color_accent" style="width:100%;border-collapse:collapse;">
     <tr class="font_med bg_color_light_tan">
-	<td class="padder" style="width:33%;">
+	<td class="padder" style="width:25%;">
 	    Guest Name
 	</td>
-	<td class="padder" style="width:33%;">
+	<td class="padder" style="width:25%;">
 	    Replied?
 	</td>
-	<td class="padder" style="width:33%;">
+        <td class="padder" style="width:25%;">
+	    Activation Code
+	</td>
+	<td class="padder" style="width:25%;">
 	    Attending?
 	    <div class="font_normal bg_color_white color_accent" style="postion:relative;float:right;">
 		<div class="padder">
@@ -35,6 +38,9 @@ if (is_array($guests) && count($guests) > 0) {
 	<td class="padder">
 	    <?php echo $has_replied; ?>
 	</td>
+        <td>
+            <?php echo ($g->getActivationCode()) ? $g->getActivationCode() : '-'; ?>
+        </td>
 	<td class="padder">
 	    <table class="guest_options">
 		<tr>

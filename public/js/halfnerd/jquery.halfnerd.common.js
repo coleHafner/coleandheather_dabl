@@ -298,7 +298,7 @@ function getDialog(opts) {
     {
 	text:'Cancel',
 	click:function(){
-	    $(this).dialog('close');
+	    $('#' + getDialogId(opts)).remove();
 	}
     },
 {
@@ -312,7 +312,8 @@ function getDialog(opts) {
 return $('<div id="' + getDialogId(opts) + '"></div>' ).dialog({
     title: getDialogTitle(opts),
     autoOpen: false,
-    buttons: buttons
+    buttons: buttons,
+    modal:true
 });
 }//getDialog()
 
