@@ -176,5 +176,46 @@ CREATE TABLE `section`
 	PRIMARY KEY (`section_id`)
 ) ENGINE=InnoDB;
 
+-- ---------------------------------------------------------------------
+-- session
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `session`;
+
+CREATE TABLE `session`
+(
+	`sessionId` INTEGER(10) NOT NULL AUTO_INCREMENT,
+	`userId` INTEGER(10) NOT NULL,
+	`sessionHash` VARCHAR(255) NOT NULL,
+	`userAgent` VARCHAR(255) NOT NULL,
+	`ipAddress` VARCHAR(255) NOT NULL,
+	`terminated` DATETIME,
+	`created` DATETIME NOT NULL,
+	`updated` DATETIME NOT NULL,
+	PRIMARY KEY (`sessionId`),
+	UNIQUE INDEX `userId` (`userId`(10)),
+	CONSTRAINT `session_ibfk_1`
+		FOREIGN KEY (`userId`)
+		REFERENCES `user` (`userId`)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- user
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user`
+(
+	`userId` INTEGER(10) NOT NULL AUTO_INCREMENT,
+	`userName` VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,
+	`created` DATETIME NOT NULL,
+	`updated` DATETIME NOT NULL,
+	PRIMARY KEY (`userId`)
+) ENGINE=InnoDB;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

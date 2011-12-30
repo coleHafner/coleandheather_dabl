@@ -20,6 +20,15 @@
 		    <div class="logo_words_container header_mega color_accent">
 			    Halfnerd <span class="color_orange">CMS</span>
 		    </div>
+
+<?php if(LoggedInApplicationController::haveActiveLogin()) { ?>
+
+                    <div style="position:absolute;right:0;top:20px;background-color:#eaeaea;" class="rounded_corners border_dark_grey padder_10">
+                        Welcome <?php echo LoggedInApplicationController::getUser()->getUserName(); ?> |
+                        <a href="#" id="authentication" process="logout">Logout</a>
+                    </div>
+<?php }?>
+
 		</div>
 
 	    </div>
@@ -36,7 +45,7 @@
 
 	    <!--main content container-->
 	    <div class="container_12">
-<?php $isLoggedIn = true; if($isLoggedIn) { ?>
+<?php if(LoggedInApplicationController::haveActiveLogin()) { ?>
 		<div class="grid_3">
 		    <div class="go_to_site_link">
 			    <a href="<?php echo site_url(); ?>">
@@ -53,9 +62,11 @@
 		    </div>
 		    <?php echo $content; ?>
 		</div>
-<?php }else {
-     load_view('admin/module-login', $params);
-} ?>
+<?php }else { load_view('admin/module-login', $params); ?>
+                <div style="position:relative;margin:20px auto auto auto;width:362px;" class="center">
+                    <a href="<?php echo site_url('/') ?>"> &lt; &lt; Go To Site</a>
+                </div>
+<?php } ?>
  		<div class="clear"></div>
 	    </div>
 	    <!--/main content container-->

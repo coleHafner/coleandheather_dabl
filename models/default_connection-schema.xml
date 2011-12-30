@@ -95,4 +95,27 @@
     <column name="title" phpName="Title" type="VARCHAR" size="1000" required="false"/>
     <column name="active" phpName="Active" type="TINYINT" size="1" required="false" defaultValue="1"/>
   </table>
+  <table name="session" phpName="Session">
+    <column name="sessionId" phpName="Sessionid" type="INTEGER" size="10" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="userId" phpName="Userid" type="INTEGER" size="10" required="true"/>
+    <column name="sessionHash" phpName="Sessionhash" type="VARCHAR" size="255" required="true"/>
+    <column name="userAgent" phpName="Useragent" type="VARCHAR" size="255" required="true"/>
+    <column name="ipAddress" phpName="Ipaddress" type="VARCHAR" size="255" required="true"/>
+    <column name="terminated" phpName="Terminated" type="TIMESTAMP" required="false"/>
+    <column name="created" phpName="Created" type="TIMESTAMP" required="true"/>
+    <column name="updated" phpName="Updated" type="TIMESTAMP" required="true"/>
+    <foreign-key foreignTable="user" name="session_ibfk_1" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference local="userId" foreign="userId"/>
+    </foreign-key>
+    <unique name="userId">
+      <unique-column name="userId"/>
+    </unique>
+  </table>
+  <table name="user" phpName="User">
+    <column name="userId" phpName="Userid" type="INTEGER" size="10" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="userName" phpName="Username" type="VARCHAR" size="255" required="true"/>
+    <column name="password" phpName="Password" type="VARCHAR" size="255" required="true"/>
+    <column name="created" phpName="Created" type="TIMESTAMP" required="true"/>
+    <column name="updated" phpName="Updated" type="TIMESTAMP" required="true"/>
+  </table>
 </database>

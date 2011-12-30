@@ -42,7 +42,7 @@ for($i = 1; $i <= $maxRow; $i++) {
 function randPic($min, $max, $exclusions) {
     for($i = $min; $i <= $max; $i++) {
 	$chosen = rand($min, $max);
-	if(!in_array($chosen, $exclusions)) {
+	if(!in_array($chosen, $exclusions) && $chosen >= 1) {
 	    return $chosen;
 	}
     }

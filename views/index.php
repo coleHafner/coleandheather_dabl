@@ -1,10 +1,12 @@
 <div class="index_top index_main center">
-content here
+    <div class="index_image">
+        <img src="/images/index_content.jpg" />
+    </div>
 </div>
 
 <div class="index_bottom">
     <div class="index_canvas_thirds index_border center">
-	<div style="position:relative;top:50px;">
+	<div class="index_thirds_content">
 	    <div class="sub_header grey">
 		The Big Day:
 	    </div>
@@ -15,23 +17,23 @@ content here
     </div>
 
     <div class="index_canvas_thirds index_border center">
-	<div style="position:relative;top:50px;">
-	    <div class="sub_header grey">
-		Location:
-	    </div>
-	    <div class="header_text light_purple" style="padding-top:15px;">
-		The Rambler<br/> Ranch
-	    </div>
-	</div>
-    </div>
-
-    <div class="index_canvas_thirds center">
-	<div style="position:relative;top:50px;">
+	<div class="index_thirds_content">
 	    <div class="sub_header grey">
 		Reception:
 	    </div>
 	    <div class="header_text light_purple" style="padding-top:15px;">
 		Party 'til the cows come home.
+	    </div>
+	</div>
+    </div>
+
+    <div class="index_canvas_thirds center">
+	<div class="index_thirds_content">
+	    <div class="sub_header grey">
+		Location:
+	    </div>
+	    <div class="header_text light_purple" style="padding-top:15px;">
+		The Rambler<br/> Ranch
 	    </div>
 	</div>
     </div>

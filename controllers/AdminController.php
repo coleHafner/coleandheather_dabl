@@ -133,8 +133,22 @@ class AdminController extends LoggedInApplicationController {
 	}
     }//guestDelete()
 
-    function guestAddType() {
+    function login() {
 
-    }//guestAddType()
+        $user = User::retrieveByUserName($_REQUEST['username']);
+
+        if($user && User::passwordCompare($_REQUEST['password'], $user->getPassword())) {
+            LoggedInApplicationController::doLogin($_REQUEST['username'], $_REQUEST['password']);
+            echo '1^Login Succesful';
+        }else {
+            echo '0^Invalid username or password.';
+        }
+        die;
+    }//login()
+
+    function logout() {
+        LoggedInApplicationController::doLogout();
+        die;
+    }//logout()
 
 }//class AdminController
