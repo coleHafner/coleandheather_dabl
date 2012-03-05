@@ -117,8 +117,8 @@ DROP TABLE IF EXISTS `guest`;
 CREATE TABLE `guest`
 (
 	`guest_id` INTEGER(100) NOT NULL AUTO_INCREMENT,
-	`parent_guest_id` INTEGER(100) NOT NULL,
-	`address_id` INTEGER(100) NOT NULL,
+	`parent_guest_id` INTEGER(100),
+	`address_id` INTEGER(100),
 	`first_name` VARCHAR(1000),
 	`last_name` VARCHAR(1000),
 	`activation_code` VARCHAR(1000),
@@ -126,8 +126,8 @@ CREATE TABLE `guest`
 	`update_timestamp` VARCHAR(1000),
 	`expected_count` TINYINT(3),
 	`actual_count` TINYINT(3),
-	`rsvp_through_site` TINYINT(1) NOT NULL,
-	`is_attending` TINYINT(1) NOT NULL,
+	`rsvp_through_site` TINYINT(1),
+	`is_attending` TINYINT(1),
 	`is_new` TINYINT(1) DEFAULT 0 NOT NULL,
 	`active` TINYINT(1) DEFAULT 1 NOT NULL,
 	PRIMARY KEY (`guest_id`)
@@ -193,7 +193,7 @@ CREATE TABLE `session`
 	`created` DATETIME NOT NULL,
 	`updated` DATETIME NOT NULL,
 	PRIMARY KEY (`sessionId`),
-	UNIQUE INDEX `userId` (`userId`(10)),
+	INDEX `userId` (`userId`(10)),
 	CONSTRAINT `session_ibfk_1`
 		FOREIGN KEY (`userId`)
 		REFERENCES `user` (`userId`)

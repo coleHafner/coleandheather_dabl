@@ -2,6 +2,9 @@
 
 class Guest extends baseGuest {
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     public function guestHasSpecialType() {
 	$q = new Query(GuestToGuestType::getTableName() . ' g2gt');
 	$q->join(GuestType::getTableName() . ' gt', 'gt.guest_type_id = g2gt.guest_type_id');
