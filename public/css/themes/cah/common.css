@@ -180,7 +180,7 @@ Layout
 
 .logo {
     position:absolute;
-    left:40px;
+    left:-60px;
     z-index:1;
 }
 

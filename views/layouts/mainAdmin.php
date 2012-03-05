@@ -1,3 +1,11 @@
+<?php
+/*
+$u = new User;
+$u->setUsername('becky');
+$u->setPassword(User::passwordEncrypt(User::passwordSalt(), 'fancy4nate!'));
+$u->save();
+*/
+?>
 <?php load_view( 'layouts/headAdmin', $params ); ?>
 
 <body class="font_normal bg_color_white">

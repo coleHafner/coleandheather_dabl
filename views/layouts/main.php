@@ -22,6 +22,12 @@
 
 	    <div class="container_12">
 		<div class="grid_12">
+
+
+		    <div class="logo">
+			<img src="/images/header_img1.png" />
+		    </div>
+
 		    <div class="nav">
 			<table class="nav_table">
 			    <tr>
@@ -44,10 +50,6 @@
 		    </div>
 		</div>
 		<div class="clear"></div>
-	    </div>
-
-	    <div class="logo">
-		<img src="/images/header_img1.png" />
 	    </div>
 
 	</div>
