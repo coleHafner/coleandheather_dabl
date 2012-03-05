@@ -1,9 +1,12 @@
 <?php
 
 class GuestType extends baseGuestType {
-    
+
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
+
+    const SPECIAL_YES = 1;
+    const SPECIAL_NO = 0;
 
     public static function getAllValids() {
 	$q = new Query;

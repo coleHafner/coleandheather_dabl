@@ -21,21 +21,21 @@ for($i = 1; $i <= $maxRow; $i++) {
     $index2 = randPic($min, $max, $excl);
     $excl[] = $index2;
 ?>
-<div class="<?php echo $container_class; ?>">
-    <div class="index_canvas index_border">
-	<div class="index_photo_left">
-	    <img src="/images/home_<?php echo $index1;?>_small.jpg" />
-	</div>
-    </div>
+    <div class="<?php echo $container_class; ?>">
+        <div class="index_canvas index_border">
+            <div class="index_photo_left">
+                <img src="/images/home_<?php echo $index1;?>_small.jpg" />
+            </div>
+        </div>
 
-    <div class="index_canvas">
-	<div class="index_photo_right">
-	    <img src="/images/home_<?php echo $index2;?>_small.jpg" />
-	</div>
-    </div>
+        <div class="index_canvas">
+            <div class="index_photo_right">
+                <img src="/images/home_<?php echo $index2;?>_small.jpg" />
+            </div>
+        </div>
 
-    <div style="clear:both;"></div>
-</div>
+        <div style="clear:both;"></div>
+    </div>
 <?php
 }
 

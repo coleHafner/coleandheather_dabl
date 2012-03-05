@@ -1,3 +1,4 @@
+#!/usr/bin/php -q
 <?php
 
 require_once('../../config.php');
@@ -17,6 +18,14 @@ $keys = array(
     'address_city',
     'address_state',
     'address_zip',
+);
+
+$special_guest_types = array(
+    'vip',
+    'groomsmen',
+    'bridesmaid',
+    'maid-of-honor',
+    'best man',
 );
 
 //get raw data
@@ -114,7 +123,18 @@ while (!feof($fp)) {
 
                 $g->save();
 
-            }//add new guest
+            }else {
+                if(!$g->getParentGuestId()) {
+                    //update activation code
+                    $new_code = Guest::getUniqueActivationCode($guest['first_name']);
+                    $g->setActivationCode($new_code);
+
+                }else {
+                    $g->setActivationCode(null);
+                }
+
+                $g->save();
+            }
 
             $guest_types = array(
                 $guest['guest_type_1'],
@@ -136,7 +156,17 @@ while (!feof($fp)) {
                     $guest_type = array_shift($result);
 
                     if(!$guest_type) {
+
                         $guest_type = new GuestType;
+
+                        //are you a special guest type?
+                        if(in_array(strtolower($gt), $special_guest_types)) {
+                            $guest_type->setIsSpecial(GuestType::SPECIAL_YES);
+
+                        }else {
+                            $guest_type->setIsSpecial(GuestType::SPECIAL_NO);
+                        }
+
                         $guest_type->setTitle($gt);
                         $guest_type->setActive(GuestType::STATUS_ACTIVE);
                         $guest_type->save();
@@ -151,6 +181,7 @@ while (!feof($fp)) {
                     $g2gt = array_shift($result);
 
                     if(!$g2gt) {
+
                         $g2gt = new GuestToGuestType;
                         $g2gt->setGuestId($g->getGuestId());
                         $g2gt->setGuestTypeId($guest_type->getGuestTypeId());

@@ -238,9 +238,14 @@ class Guest extends baseGuest {
 	return array_shift($result);
     }//getGuestFromId()
 
-    public static function getUniqueActivationCode($salt) {
-        $raw =  md5($salt . date("F d\, Y H:i:s"));
-        $code = strtolower(substr($raw, 0, 10));
+    public static function getUniqueActivationCode($salt = false) {
+
+        //old way
+        //$raw =  md5($salt . date("F d\, Y H:i:s"));
+        //$code = strtolower(substr($raw, 0, 10));
+
+        //new way
+        $code = rand(1000, 9999);
 
         $q = new Query;
         $q->add(Guest::ACTIVATION_CODE, $code);

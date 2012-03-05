@@ -1,4 +1,4 @@
-<input type="text" class="text_input center border_solid_grey color_black header_text text_input_long" maxlength="10" id="activation_code" value="" />
+<input type="text" class="text_input center border_solid_grey color_black header_text text_input_long" maxlength="4" id="activation_code" value="" />
 
 <div class="rsvp_inner">
     <div class="padder_10">

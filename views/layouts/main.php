@@ -36,6 +36,7 @@
 				    'index' => 'Details',
 				    'gallery' => 'Gallery',
 				    'rsvp' => 'Rsvp',
+                                    'info' => 'Info',
 				    'posts' => 'Message Us',
 				);
 
