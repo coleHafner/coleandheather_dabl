@@ -154,9 +154,8 @@ $( document ).ready( function() {
 
     $( ".info" ).live( "click", function( event ) {
 
-	event.preventDefault();
+	event.preventDefault()
 	var process = $( this ).attr( "process" ).toLowerCase();
-	//alert( "we are here. this is process: " + process );
 
 	switch( process )
 	{
@@ -172,26 +171,70 @@ $( document ).ready( function() {
 		break;
 
 	    case "show-map":
-		var address = $( "#address" ).attr( "value" );
-		var city = $( "#city" ).attr( "value" );
-		var state = $( "#state" ).attr( "value" );
+
+                var $form = $(this).closest('form'),
+                    address = $form.find('input[name=address]').val(),
+                    state = $form.find('input[name=state]').val(),
+                    city = $form.find('input[name=city]').val(),
+                    zip = $form.find('input[name=zip]').val();
 
 		if( city.length > 0 &&
 		    state.length > 0 )
 		    {
 		    var start = ( address.length > 0 ) ? address + " " + city + " " + state : city + " " + state;
 		    mapShowRoute( start );
-
-		    //populate directions link
-		    var start_formatted = start.replace( / /g, "_" );
-		    $( "#full_screen_link" ).html( '<a href="/directions?start=' + start_formatted + '" target="_blank">Go Full Screen &gt;&gt;</a>' );
 		}
 		else
 		{
-		    showFormMessage( "Hey, you forgot something!", "0",  function(){} );
+                    alert("Hey, you forgot something!");
+		    //showFormMessage( "Hey, you forgot something!", "0",  function(){} );
 		}
 		break;
+
+            case "show-places":
+                mapInitPlaces();
+                break;
 	}
+    });
+
+    $('#directions_canvas_toggle').click(function(event){
+
+        event.preventDefault();
+        togglePanel( $('#directions_canvas'), $(this), 'Hide Directions', 'Show Directions');
+    });
+
+    $('#places_list_toggle').click(function(event){
+
+        event.preventDefault();
+        togglePanel( $('#places_canvas_list'), $(this), 'Hide Directions', 'Show Directions');
+    });
+
+    $('.info_options').click(function(event){
+
+        event.preventDefault();
+
+        var targets = ['directions', 'gift-registries', 'hotels', 'general'];
+        var target = $(this).attr('target');
+
+        for(var i = 0; i < targets.length; i++) {
+
+            if(targets[i] == target) {
+                $('#' + targets[i]).show();
+
+            }else {
+                $('#' + targets[i]).hide();
+            }
+        }
+
+        if(target == 'hotels') {
+            mapInitPlaces();
+        }
+    });
+
+    $('#directions_form input[type=text]').keypress( function(event){
+       if(event.which == 13) {
+           $('#directions_search_button').trigger('click');
+       }
     });
 
     resizePage();
@@ -209,6 +252,8 @@ $( window ).load( function() {
     if( $( "#map_canvas" ).length > 0 ) {
 	var map;
 	var geocoder;
+        var infoWindow;
+        var placesService;
 	var directionsDisplay;
 	var directionsService;
     }
@@ -216,6 +261,24 @@ $( window ).load( function() {
     resizePage();
     resizeCanvas();
 });
+
+function togglePanel(panel_target, link_target, hide, show) {
+
+    var inner_val = hide;
+    var visible_val = '1';
+    var position = '0';
+
+    if(link_target.attr('visible') == '1') {
+        visible_val = '0';
+        position = '-300';
+        inner_val = show;
+    }
+
+    panel_target.animate({'right':position}, 1000);
+    link_target.attr('visible', visible_val);
+    link_target.text(inner_val);
+
+}//togglePanel()
 
 function resizePage() {
     //resize page
@@ -285,99 +348,177 @@ function mapShowDirections( start )
 
 }//showShowDirections()
 
-function mapInit()
-{
+function mapInit(map_target, callback) {
+
+    //endPoint = '3611+NW+Upas+Ave.+Redmond,+OR+97756';
+    //var latLon = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&sensor=false';
+
+    endPoint = '3611 NW Upas Ave. Redmond, OR 97756';
+
     geocoder = new google.maps.Geocoder();
+    infoWindow = new google.maps.InfoWindow();
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
 
-    var salem = mapConvertAddress( "salem, or" );
-    var options = {
-	zoom:5,
-	center:salem,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+    geocoder.geocode({address: endPoint}, function (results, status) {
 
-    map = new google.maps.Map( document.getElementById( "map_canvas" ), options );
-    directionsDisplay.setMap( map );
-    document.getElementById( "directions_canvas" ).innerHTML = "";
-    directionsDisplay.setPanel( document.getElementById( "directions_canvas" ) );
+        if (status == google.maps.GeocoderStatus.OK) {
+
+            mapLocation = results[0].geometry.location;
+
+            var options = {
+                zoom: 8,
+                center:mapLocation,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById(map_target), options);
+            callback();
+
+        }else {
+            alert( "Geocode was not successful for the following reason: " + status );
+        }
+
+    });
 
 }//mapInit()
 
-function mapCalcRoute( start, callback )
-{
-    var end = "Deepwood Estates 1116 Mission Street Southeast Salem, OR";
-    var request = {
-	origin:start,
-	destination:end,
-	travelMode: google.maps.DirectionsTravelMode.DRIVING
-    };
+function mapShowRoute( start ) {
 
-    directionsService.route( request, function( result, status ) {
-
-	if ( status == google.maps.DirectionsStatus.OK )
-	{
-	    directionsDisplay.setDirections( result );
-	    callback();
-	}
-    });
-
-}//mapCalcRoute()
-
-function mapConvertAddress( address )
-{
-    geocoder.geocode( {
-	'address': address
-    }, function( results, status) {
-
-	if ( status == google.maps.GeocoderStatus.OK )
-	{
-	    map.setCenter( results[0].geometry.location );
-	    var marker = new google.maps.Marker( {
-		map: map,
-		position: results[0].geometry.location
-	    } );
-	}
-	else
-	{
-	    alert( "Geocode was not successful for the following reason: " + status );
-	}
-    });
-
-}//mapConvertAddress()
-
-function mapToggleControls( cmd )
-{
-    cmd = cmd.toLowerCase();
-
-    if( cmd == "hide" )
-    {
-	//$( "#map_controls" ).removeClass( "controls_visible" ).addClass( "controls_hidden" );
-	$( "#map_controls" ).animate( {
-	    top:'-=324'
-	}, 700 );
-	$( "#map_tab_link" ).html( "Show" );
-    }
-    else
-    {
-	//$( "#map_controls" ).removeClass( "controls_hidden" ).addClass( "controls_visible" );
-	$( "#map_controls" ).animate( {
-	    top:'+=323'
-	}, 700 );
-	$( "#map_tab_link" ).html( "Hide" );
+    var callback = function(){
+        directionsDisplay.setMap(map);
+        var directionsCanvas = document.getElementById('directions_canvas')
+        directionsCanvas.innerHTML = "";
+        directionsDisplay.setPanel(directionsCanvas);
     }
 
-}//mapToggleControls()
+    mapInit('map_canvas', callback);
 
-function mapShowRoute( start )
-{
-    mapInit();
     mapCalcRoute( start, function(){
-	mapToggleControls( "hide" );
+        $('#directions_canvas').addClass('directions_canvas');
+        $('#directions_canvas_toggle').show();
     });
 
 }//mapShowRoute()
+
+function mapCalcRoute(start, callback)
+{
+    var request = {
+	origin:start,
+	destination:endPoint,
+	travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+
+    directionsService.route(request, function(result, status) {
+        if(status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections( result );
+            callback();
+        }else {
+            alert('Something went wrong!');
+        }
+    })
+
+}//mapCalcRoute()
+
+function mapInitPlaces() {
+
+    var callback = function(){
+        marker = new google.maps.Marker({
+            map: map,
+            position:mapLocation
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.setContent('The Venue');
+            infoWindow.open(map, this);
+        });
+    }
+
+
+    $('#places_canvas_list').addClass('directions_canvas');
+    $('#places_canvas_list').show();
+
+
+    mapInit('places_canvas', callback);
+
+    geocoder.geocode({address:endPoint}, function (results, status) {
+
+        if(status == google.maps.GeocoderStatus.OK ) {
+
+            var request = {
+                location: results[0].geometry.location,
+                radius: '5000',
+                keyword: 'hotel',
+                types:['lodging']
+            };
+
+            placesService = new google.maps.places.PlacesService(map);
+            placesService.search(request, mapShowPlaces);
+
+        }else {
+            alert( "Geocode was not successful for the following reason: " + status );
+        }
+
+    });
+
+}//mapInitPlaces()
+
+function mapShowPlaces(results, status) {
+
+    if(status == google.maps.places.PlacesServiceStatus.OK) {
+
+        map.setZoom(12);
+        var place = null;
+
+        for (var i = 0; i < results.length; i++) {
+            place = results[i]
+            var request = {reference: place.reference};
+            placesService.getDetails(request, mapInitMarker);
+        }
+    }else {
+        alert('Error: failed to show places for the following reason: ' + status);
+    }
+}//mapShowPlaces()
+
+function mapInitMarker(place, status) {
+
+    if(status == google.maps.places.PlacesServiceStatus.OK) {
+        mapCreateMarker(place);
+
+    }else {
+        alert('Error: Place details not found for the following reason "' + status + '"');
+    }
+}
+function mapCreateMarker(place) {
+
+    var request = {map: map, position: place.geometry.location}
+    var marker = new google.maps.Marker(request);
+
+    var image = new google.maps.MarkerImage(
+      place.icon,
+      new google.maps.Size(35, 35),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(17, 34),
+      new google.maps.Size(25, 25)
+    );
+
+    marker.setIcon(image);
+
+    var desc =  '<a href="' + place.url + '" target="_blank">' + place.name + '</a>' + '<br/>';
+    desc += place.formatted_address.replace(',', '<br/>') + '<br/>';
+    desc += place.formatted_phone_number + '<br/>';
+
+    //add to list
+    $('#sst').append('<div class="padder_10">' + desc + '</div><hr/>');
+
+    desc += (place.rating && typeof place.rating != 'undefined') ? 'Rating: ' + place.rating + '/5 stars' : 'No rating available.';
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent(desc);
+        infoWindow.open(map, this);
+    });
+
+}//mapCreateMarker()
 
 /**
  * Shows result of form submission.

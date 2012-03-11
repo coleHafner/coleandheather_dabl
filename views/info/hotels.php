@@ -1,16 +1,21 @@
-<?php
-if( !isset( $skip_template ) ) {
-	load_view( 'widgets/two-col', $params );
-} else {
-?>
-<div class="padder_10 header_text color_brown">
-	Hotels in the Area
-</div>
-<div class="padder_10_left padder_10_bottom">
-	Coming from out of town? These are some great hotels in the Salem area.
-</div>
 
-<?php
-load_view( 'widgets/super-grid', $params );
-}
-?>
+<?php $display = (!empty($display)) ? 'display:' . $display . ';' : ''; ?>
+
+<div class="rsvp_activation_form border_solid_grey" style="width:850px;overflow:hidden;<?php echo $display; ?>" id="hotels">
+    <div class="header_bar color_tan_bg">
+
+        <div class="padder_10 header_text grey">
+            HOTELS
+        </div>
+
+        <div class="directions_canvas_toggle right_floater">
+            <a id="places_list_toggle" class="font_small" href="#" visible="1">
+                Hide List
+            </a>
+        </div>
+
+    </div>
+
+    <div id="places_canvas"></div>
+    <div id="places_canvas_list"></div>
+</div>

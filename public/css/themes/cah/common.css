@@ -477,6 +477,24 @@ a.button:hover, a.button_selected {
     text-decoration:none;
 }
 
+a.button_small:link, a.button_small:visited {
+    width:80px;
+    margin:auto;
+    display:block;
+    position:relative;
+    -moz-box-shadow:1px 1px 1px #888;
+    -webkit-box-shadow:1px 1px 1px #888;
+    box-shadow:1px 1px 1px #888;
+    padding:5px 0 5px 0;
+}
+
+a.button_small:hover, a.button_selected {
+    -moz-box-shadow:inset 1px 1px 1px #333;
+    -webkit-box-shadow:inset 1px 1px 1px #333;
+    box-shadow:inset 1px 1px 1px #333;
+    text-decoration:none;
+}
+
 .button_square {
     width:20px !important;
     height:20px !important;
@@ -513,6 +531,28 @@ Colors, borders, fonts, etc...
 .padder_10_bottom {
     padding-bottom:10px;
 }
+
+.padder_20 {
+    padding:20px;
+}
+
+
+.padder_20_top {
+    padding-top:20px;
+}
+
+.padder_20_right {
+    padding-right:20px;
+}
+
+.padder_20_bottom {
+    padding-bottom:20px;
+}
+
+.padder_20_left {
+    padding-left:20px;
+}
+
 
 .padder_5_left {
     padding-left:5px;
@@ -902,14 +942,6 @@ Wedding Info
     float:left;
 }
 
-.directions_canvas {
-    position:relative;
-    width:45%;
-    height:100%;
-    float:left;
-    overflow:auto;
-}
-
 .info_inner {
     position:relative;
     height:100%;
@@ -980,4 +1012,52 @@ Wedding Info
 
 .hotel_grid td {
     width:50%;
+}
+
+.left_floater {
+    float:left;
+}
+
+.right_floater {
+    float:right;
+}
+
+.font_small {
+    font-size:13px;
+}
+
+#directions_canvas, #places_canvas_list {
+    position:absolute;
+    right:0;
+    width:300px;
+    overflow:auto;
+}
+
+#directions_canvas {
+    top:113px;
+}
+
+#places_canvas_list {
+    top:69px;
+}
+
+.directions_canvas {
+    border-left:1px solid #ccc;
+}
+
+#directions_canvas_toggle {
+    position:absolute;
+    right:50px;
+    bottom:15px;
+    display:none;
+}
+
+#map_canvas, #places_canvas {
+    position:relative;
+    width:100%;
+}
+
+#map_canvas, #directions_canvas, #places_canvas, #places_canvas_list {
+    height:500px;
+    background-color:#fff;
 }
