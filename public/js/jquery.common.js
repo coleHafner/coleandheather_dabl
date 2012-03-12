@@ -182,7 +182,7 @@ $( document ).ready( function() {
 		    state.length > 0 )
 		    {
 		    var start = ( address.length > 0 ) ? address + " " + city + " " + state : city + " " + state;
-		    mapShowRoute( start );
+		    mapShowRoute(start, true);
 		}
 		else
 		{
@@ -206,7 +206,7 @@ $( document ).ready( function() {
     $('#places_list_toggle').click(function(event){
 
         event.preventDefault();
-        togglePanel( $('#places_canvas_list'), $(this), 'Hide Directions', 'Show Directions');
+        togglePanel( $('#places_canvas_list'), $(this), 'Hide List', 'Show List');
     });
 
     $('.info_options').click(function(event){
@@ -353,6 +353,7 @@ function mapInit(map_target, callback) {
     //endPoint = '3611+NW+Upas+Ave.+Redmond,+OR+97756';
     //var latLon = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&sensor=false';
 
+    markerCounter = 0;
     endPoint = '3611 NW Upas Ave. Redmond, OR 97756';
 
     geocoder = new google.maps.Geocoder();
@@ -367,7 +368,6 @@ function mapInit(map_target, callback) {
             mapLocation = results[0].geometry.location;
 
             var options = {
-                zoom: 8,
                 center:mapLocation,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
@@ -383,7 +383,7 @@ function mapInit(map_target, callback) {
 
 }//mapInit()
 
-function mapShowRoute( start ) {
+function mapShowRoute(start, show_link) {
 
     var callback = function(){
         directionsDisplay.setMap(map);
@@ -396,7 +396,12 @@ function mapShowRoute( start ) {
 
     mapCalcRoute( start, function(){
         $('#directions_canvas').addClass('directions_canvas');
-        $('#directions_canvas_toggle').show();
+        $('.directions_canvas_toggle').show();
+
+        if(show_link) {
+            var fullScreen = '<a href="/directions?from=' + encodeURI(start) + '" target="_blank">Get Full Screen Directions</a>';
+            $('#directions_canvas').prepend('<div class="padder_10" id="full_screen_dir_link" style="text-align:center;">' + fullScreen + '</div>');
+        }
     });
 
 }//mapShowRoute()
@@ -428,18 +433,25 @@ function mapInitPlaces() {
             position:mapLocation
         });
 
+        //marker content
+        var marker_content = '<table><tr>';
+            marker_content += '<td><img src="/images/home_11_small.jpg" style="height:70px;width:70px;" /></td>';
+            marker_content += '<td valign="top">The Venue<br/>' + endPoint.replace('.', '.<br/>') + '</td>';
+            marker_content += '</tr></table>';
+
         google.maps.event.addListener(marker, 'click', function() {
-            infoWindow.setContent('The Venue');
+            infoWindow.setContent(marker_content);
             infoWindow.open(map, this);
         });
+
+        //open info window by default
+        infoWindow.setContent(marker_content);
+        infoWindow.open(map, marker);
     }
 
-
-    $('#places_canvas_list').addClass('directions_canvas');
-    $('#places_canvas_list').show();
-
-
     mapInit('places_canvas', callback);
+
+    $('.places_list_toggle').show();
 
     geocoder.geocode({address:endPoint}, function (results, status) {
 
@@ -493,6 +505,11 @@ function mapCreateMarker(place) {
 
     var request = {map: map, position: place.geometry.location}
     var marker = new google.maps.Marker(request);
+    var markerLinkId = 'marker' + markerCounter;
+
+    var pretty_rating = (place.rating && typeof place.rating != 'undefined') ? 'Rating: ' + place.rating + '/5 stars' : 'No rating available.';
+    var pretty_address = place.formatted_address.replace(',', '<br/>').replace(', United States', '') + '<br/>';
+    var pretty_phone = place.formatted_phone_number + '<br/>';
 
     var image = new google.maps.MarkerImage(
       place.icon,
@@ -504,19 +521,29 @@ function mapCreateMarker(place) {
 
     marker.setIcon(image);
 
-    var desc =  '<a href="' + place.url + '" target="_blank">' + place.name + '</a>' + '<br/>';
-    desc += place.formatted_address.replace(',', '<br/>') + '<br/>';
-    desc += place.formatted_phone_number + '<br/>';
-
-    //add to list
-    $('#sst').append('<div class="padder_10">' + desc + '</div><hr/>');
-
-    desc += (place.rating && typeof place.rating != 'undefined') ? 'Rating: ' + place.rating + '/5 stars' : 'No rating available.';
+    var desc = '<a href="' + place.url + '" target="_blank" >' + place.name + '</a>' + '<br/>';
+        desc += pretty_address + pretty_phone + pretty_rating;
 
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent(desc);
         infoWindow.open(map, this);
     });
+
+    var list_desc = '<div class="padder_10"><a href="#" id="' + markerLinkId + '" >' + place.name + '</a>' + '<br/>';
+        list_desc += pretty_address +  pretty_phone + '</div><hr/>';
+
+    //add to list
+    document.getElementById('places_canvas_list').innerHTML += list_desc;
+
+    var link = document.getElementById(markerLinkId);
+
+    //add the listener
+    google.maps.event.addDomListener(link, 'click', function() {
+        google.maps.event.trigger(marker, 'click');
+        return false;
+    });
+
+    markerCounter++;
 
 }//mapCreateMarker()
 

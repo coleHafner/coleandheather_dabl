@@ -1,21 +1,23 @@
-<div class="container_12">
-	<div class="grid_12">
-		<div id="map_canvas" style="position:relative;height:550px;background-color:#FFF;margin-top:10px;">
-		</div>
-	</div>
 
-	<div class="clear"></div>
+<div class="rsvp_activation_form border_solid_grey" style="position:relative;width:960px;margin:auto;margin-top:10px;margin-bottom:10px;">
+
+    <div class="header_bar color_tan_bg" style="position:relative;height:90px;">
+        <div class="padder_10">
+            <div class="header_text grey padder_10_bottom">
+                DRIVING DIRECTIONS
+            </div>
+
+            <a href="/info">&lt;&lt; Back to Info</a>
+        </div>
+    </div>
+
+    <div id="map_canvas" style="position:relative;height:800px;width:70%;top:auto;float:left;"></div>
+
+    <div id="directions_canvas" style="position:relative;height:800px;width:29%;top:auto;float:left;right:-5px;"></div>
+
+    <div style="clear:both;"></div>
 </div>
 
-<div class="container_12">
-	<div class="grid_12">
-		<div class="content" style="margin-bottom:50px;">
-			<div style="position:relative;padding:25px 10px 0 10px;">
-				<a href="<?php echo site_url( '/info/directions' ) ?>">&lt;&lt; Go Back </a>
-			</div>
-			<div class="padder_10" id="directions_canvas"></div>
-		</div>
-	</div>
-
-	<div class="clear"></div>
-</div>
+<script type="text/javascript">
+    mapShowRoute('<?php echo $from; ?>',false);
+</script>

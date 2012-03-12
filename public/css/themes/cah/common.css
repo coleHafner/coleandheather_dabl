@@ -1028,28 +1028,33 @@ Wedding Info
 
 #directions_canvas, #places_canvas_list {
     position:absolute;
-    right:0;
+    right:-300px;
     width:300px;
     overflow:auto;
 }
 
 #directions_canvas {
-    top:113px;
+    top:119px;
 }
 
 #places_canvas_list {
-    top:69px;
+    top:70px;
 }
 
 .directions_canvas {
     border-left:1px solid #ccc;
 }
 
-#directions_canvas_toggle {
+.directions_canvas_toggle, .places_list_toggle {
     position:absolute;
-    right:50px;
-    bottom:15px;
+    right:80px;
+    top:30px;
+    z-index:101;
     display:none;
+}
+
+.places_list_toggle {
+    top:20px;
 }
 
 #map_canvas, #places_canvas {
@@ -1060,4 +1065,8 @@ Wedding Info
 #map_canvas, #directions_canvas, #places_canvas, #places_canvas_list {
     height:500px;
     background-color:#fff;
+}
+
+#places_canvas_list {
+    border-left:1px solid #ccc;
 }
