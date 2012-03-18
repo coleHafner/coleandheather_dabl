@@ -251,6 +251,24 @@ Index
     height:200px;
 }
 
+.info_section {
+    position:relative;
+    width:277px;
+    float:left;
+    height:230px;
+    margin-bottom:10px;
+}
+
+.info_color_swatch {
+    width:40px;
+    height:40px;
+}
+
+.info_thirds_content {
+    position:relative;
+    top:50px;
+}
+
 .index_border {
     border-right:1px dashed #888;
 }
@@ -553,6 +571,19 @@ Colors, borders, fonts, etc...
     padding-left:20px;
 }
 
+
+.padder_5_top {
+    padding-top:5px;
+}
+
+.padder_5_right {
+    padding-right:5px;
+
+}
+
+.padder_5_bottom {
+    padding-bottom:5px;
+}
 
 .padder_5_left {
     padding-left:5px;
@@ -1026,11 +1057,12 @@ Wedding Info
     font-size:13px;
 }
 
-#directions_canvas, #places_canvas_list {
+.list {
     position:absolute;
     right:-300px;
     width:300px;
     overflow:auto;
+    border-left:1px solid #ccc;
 }
 
 #directions_canvas {
@@ -1039,10 +1071,6 @@ Wedding Info
 
 #places_canvas_list {
     top:70px;
-}
-
-.directions_canvas {
-    border-left:1px solid #ccc;
 }
 
 .directions_canvas_toggle, .places_list_toggle {
@@ -1062,11 +1090,62 @@ Wedding Info
     width:100%;
 }
 
-#map_canvas, #directions_canvas, #places_canvas, #places_canvas_list {
+/*#map_canvas, #directions_canvas, #places_canvas, #places_canvas_list {*/
+.sub_canvas {
     height:500px;
     background-color:#fff;
 }
 
-#places_canvas_list {
-    border-left:1px solid #ccc;
+.info_sub_nav {
+    position:relative;
+    left:221px;
+    top:5px;
+}
+
+.info_sub_nav a{
+    display:block;
+    float:left;
+    margin-right:3px;
+    padding:5px 10px 10px 10px;
+    background-color:#EAEAEA;
+    font-weight:bold;
+    color:#999;
+    border:1px solid #888;
+    border-style:solid solid hidden solid;
+    /*background-image: url('/images/bg_canvas.png');
+    border-radius:20px 20px 0 0;*/
+}
+
+.info_sub_nav a.selected, .info_sub_nav a:hover {
+    text-decoration: none;
+    color:#9C3290;
+    z-index:102;
+}
+
+.info_container {
+    width:850px;
+    overflow:hidden;
+}
+
+.info_donate {
+    padding:10px;
+    border:1px solid #999;
+}
+
+.donate_button {
+    padding-top:3px;
+}
+
+.donate_blurb {
+    padding-top:8px;
+    font-size:12px;
+}
+
+.general_container {
+    font-size:12px;
+    padding:10px;
+}
+
+.general_container div {
+    padding-bottom:5px;
 }

@@ -5,7 +5,7 @@
 </div>
 
 <div class="rsvp_inner rsvp_message center">
-    For directions or gift registry info see the <a href="<?php echo site_url('info/registries'); ?>">'Wedding Info'</a> section.<br/>
+    For directions or gift registry info see the <a href="<?php echo site_url('info'); ?>">'Wedding Info'</a> section.<br/>
     Remember, you can update your RSVP status at any time.<br/>
     We just ask that you do so by <span style="font-weight:bold;"><? echo RSVP_DEADLINE; ?></span>.
 </div>

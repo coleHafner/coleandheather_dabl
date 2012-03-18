@@ -7,7 +7,7 @@
                 DRIVING DIRECTIONS
             </div>
 
-            <a href="/info">&lt;&lt; Back to Info</a>
+            <a href="/info?address=<?php echo $address; ?>&city=<?php echo $city; ?>&state=<?php echo $state; ?>&from=<?php echo $from; ?>#directions">&lt;&lt; Back to Info</a>
         </div>
     </div>
 

@@ -1,7 +1,7 @@
 
-<?php $display = (!empty($display)) ? 'display:' . $display . ';' : ''; ?>
+<?php $display = (!empty($display)) ? 'style="display:' . $display . ';"' : ''; ?>
 
-<div class="rsvp_activation_form border_solid_grey" style="width:850px;overflow:hidden;<?php echo $display; ?>" id="hotels">
+<div class="rsvp_activation_form border_solid_grey info_container" <?php echo $display; ?> id="hotels">
     <div class="header_bar color_tan_bg">
 
         <div class="padder_10">
@@ -24,6 +24,6 @@
 
     </div>
 
-    <div id="places_canvas"></div>
-    <div id="places_canvas_list"></div>
+    <div id="places_canvas" class="sub_canvas"></div>
+    <div id="places_canvas_list" class="sub_canvas list"></div>
 </div>

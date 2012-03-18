@@ -178,11 +178,12 @@ $( document ).ready( function() {
                     city = $form.find('input[name=city]').val(),
                     zip = $form.find('input[name=zip]').val();
 
-		if( city.length > 0 &&
-		    state.length > 0 )
-		    {
+		if( city.length > 0 && state.length > 0 ) {
+
 		    var start = ( address.length > 0 ) ? address + " " + city + " " + state : city + " " + state;
-		    mapShowRoute(start, true);
+		    //mapShowRoute(start, true);
+                    var url = '/info?address=' + address + '&city=' + city + '&state=' + state + '&from=' + start + '#directions';
+                    window.location = encodeURI(url);
 		}
 		else
 		{
@@ -220,6 +221,8 @@ $( document ).ready( function() {
 
             if(targets[i] == target) {
                 $('#' + targets[i]).show();
+                window.location = '/info#' + targets[i];
+                window.scrollTo(0,0);
 
             }else {
                 $('#' + targets[i]).hide();
@@ -236,6 +239,11 @@ $( document ).ready( function() {
            $('#directions_search_button').trigger('click');
        }
     });
+
+    $('.info_sub_nav a').click(function(){
+        $('.info_sub_nav a').removeClass('selected');
+        $(this).addClass('selected');
+    })
 
     resizePage();
     resizeCanvas();
@@ -258,6 +266,20 @@ $( window ).load( function() {
 	var directionsService;
     }
 
+    var loc = window.location.toString();
+
+    if(loc.indexOf('info') != -1 && loc.indexOf('#') != -1) {
+
+        if(loc.indexOf('?') == -1) {
+            var nav_section = '#nav-' + loc.split('#')[1];
+            $(nav_section).trigger('click');
+
+        }else {
+            window.scrollTo(0,0);
+
+        }
+    }
+
     resizePage();
     resizeCanvas();
 });
@@ -274,7 +296,7 @@ function togglePanel(panel_target, link_target, hide, show) {
         inner_val = show;
     }
 
-    panel_target.animate({'right':position}, 1000);
+    panel_target.animate({'right':position}, 700);
     link_target.attr('visible', visible_val);
     link_target.text(inner_val);
 
@@ -399,7 +421,14 @@ function mapShowRoute(start, show_link) {
         $('.directions_canvas_toggle').show();
 
         if(show_link) {
-            var fullScreen = '<a href="/directions?from=' + encodeURI(start) + '" target="_blank">Get Full Screen Directions</a>';
+            var $form = $('#directions_form'),
+                address = $form.find('input[name=address]').val(),
+                state = $form.find('input[name=state]').val(),
+                city = $form.find('input[name=city]').val(),
+                zip = $form.find('input[name=zip]').val();
+
+            var url = '/directions?address=' + address + '&city=' + city + '&state=' + state + '&from=' + start + '#directions';
+            var fullScreen = '<a href="' + encodeURI(url) + '">Get Full Screen Directions</a>';
             $('#directions_canvas').prepend('<div class="padder_10" id="full_screen_dir_link" style="text-align:center;">' + fullScreen + '</div>');
         }
     });
