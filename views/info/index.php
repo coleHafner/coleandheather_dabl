@@ -6,7 +6,9 @@
     <div style="clear:both;"></div>
 </div>
 
-<?php load_view('info/registries', array('display' => 'none')); ?>
-<?php load_view('info/general', array('display' => 'none')); ?>
-<?php load_view('info/hotels', array('display' => 'none')); ?>
-<?php load_view('info/directions', array_merge($params, array('display' => 'block'))); ?>
+<div class="info_spacer">
+    <?php load_view('info/registries', array('display' => 'none')); ?>
+    <?php load_view('info/general', array('display' => 'none')); ?>
+    <?php load_view('info/hotels', array('display' => 'none')); ?>
+    <?php load_view('info/directions', array_merge($params, array('display' => 'block'))); ?>
+</div>

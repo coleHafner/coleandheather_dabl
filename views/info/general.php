@@ -10,7 +10,7 @@
             </span>
             <br/>
             <span class="font_small color_sub">
-                Info about the big day
+                &nbsp;&nbsp;&nbsp;Info about the big day
             </span>
         </div>
 
@@ -107,10 +107,12 @@
             <div class="info_section center">
                 <div class="info_thirds_content">
                     <div class="sub_header grey">
-                        Plenty of Parking?
+                        Parking?
                     </div>
-                    <div class="header_text light_purple" style="padding-top:15px;">
-                        Yup!
+                    <div class="sub_header light_purple" style="padding-top:15px;">
+                        Limited.<br/>
+                        Carpooling is encouraged<br/>
+                        and appreciated
                     </div>
                 </div>
             </div>

@@ -320,6 +320,10 @@ function resizePage() {
 	newWidth -= currentMargin;
     }
 
+    if(newWidth > viewportWidth) {
+        newWidth = (viewportWidth - 100);
+    }
+
     $page.css('width', newWidth);
 
 }//resizePage()

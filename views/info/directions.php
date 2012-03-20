@@ -33,13 +33,6 @@
                             <span class="font_small color_sub">State:</span><br/>
                             <input type="text" name="state" value="<?php echo $state; ?>"/>
                         </td>
-<!--
-                        <td>
-                            <span class="font_small color_sub">Zip:</span><br/>
-                            <input type="text" name="zip" value=""/>
-                        </td>
--->
-
                         <td>
                             <a href="#" class="button_small light_purple_bg center info" process="show-map" style="position:relative;top:7px;" id="directions_search_button">
                                 <span class="color_white" style="font-weight:bold;">

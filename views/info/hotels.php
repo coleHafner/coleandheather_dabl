@@ -10,7 +10,7 @@
             </span>
             <br/>
             <span class="font_small color_sub">
-                &nbsp;&nbsp;Click on icon to see hotel
+                &nbsp;&nbsp;&nbsp;Click on icon to see hotel
             </span>
         </div>
 

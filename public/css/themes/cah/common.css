@@ -1097,9 +1097,9 @@ Wedding Info
 }
 
 .info_sub_nav {
-    position:relative;
-    left:221px;
-    top:5px;
+    position:absolute;
+    left:235px;
+    top:22px;
 }
 
 .info_sub_nav a{
@@ -1128,17 +1128,27 @@ Wedding Info
 }
 
 .info_donate {
+    position:absolute;
+    bottom:10px;
+    width:810px;
     padding:10px;
     border:1px solid #999;
+    background-color:#FFFCCF;
+}
+
+.info_spacer {
+    position:relative;
+    margin-top:25px;
 }
 
 .donate_button {
     padding-top:3px;
+    margin-left: 10px;
 }
 
 .donate_blurb {
-    padding-top:8px;
-    font-size:12px;
+    padding-top:6px;
+    font-size:13px;
 }
 
 .general_container {
