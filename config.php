@@ -17,6 +17,9 @@ define('CONFIG_DIR', APP_DIR . 'config/');
 // directory where libraries are located
 define('LIBRARIES_DIR', APP_DIR . 'libraries/');
 
+// directory where libraries are located
+define('TEST_CONST', 'not meaningful');
+
 // directory for logs
 define('LOGS_DIR', APP_DIR . 'logs/');
 
