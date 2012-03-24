@@ -59,14 +59,6 @@ class AdminController extends LoggedInApplicationController {
 		'button_value' => "Filter",
 		'extra_style' => 'style="width:41px;"' ),
 
-	    'right' => array(
-		'pk_name' => "guest_list_id",
-		'pk_value' => 0,
-		'process' => "cancel_filter",
-		'id' => "guest_list",
-		'button_value' => "Hide",
-		'extra_style' => 'style="width:41px;"' ),
-		'table_style' => 'style="margin-top:18px;margin-left:55px;"'
 	);
 
     }//guestList()
@@ -89,8 +81,8 @@ class AdminController extends LoggedInApplicationController {
 	if(isset($_REQUEST['showForm'])) {
 	    $this['activeRecord'] = $activeRecord;
 	    $this['action'] = $_REQUEST['action'];
+
 	}else {
-	    print_r($_REQUEST);
 
 	    if($activeRecord->isNew()) {
 		$activeRecord->setParentGuestId($_REQUEST['parent_guest_id']);
@@ -101,21 +93,20 @@ class AdminController extends LoggedInApplicationController {
 		if($_REQUEST['parent_guest_id'] == 0) {
                     $activeRecord->setActivationCode(Guest::getUniqueActivationCode($_REQUEST['first_name']));
                 }
+
+                $activeRecord->save();
+
+                foreach($_REQUEST['guest_type_id'] as $gtId) {
+                    $activeRecord->addGuestTypeId($gtId);
+                }
 	    }
 
 	    $isAttending = (isset($_REQUEST['is_attending'])) ? 1 : 0;
 	    $activeRecord->setFirstName($_REQUEST['first_name']);
 	    $activeRecord->setLastName($_REQUEST['last_name']);
 	    $activeRecord->setIsAttending($isAttending);
+            $activeRecord->setUpdateTimestamp(time());
 	    $result = $activeRecord->save();
-
-            if($activeRecord->isNew()) {
-                foreach($_REQUEST['guest_type_id'] as $gtId) {
-                    $activeRecord->addGuestTypeId($gtId);
-                }
-            }
-
-	    echo "this is result: " . $result;
 	    die;
 	}
     }//guestEdit()

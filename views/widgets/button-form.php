@@ -8,11 +8,14 @@ $container_id = ( array_key_exists("container_id", $params) ) ? 'id="' . $params
 	<td class="center">
 	    <?php load_view('widgets/button', $params['left']); ?>
 	</td>
-	<td>
-	    &nbsp;
-	</td>
-	<td class="center">
-	    <?php load_view('widgets/button', $params['right']); ?>
-	</td>
+
+        <?if(isset($params['right'])) { ?>
+            <td>
+                &nbsp;
+            </td>
+            <td class="center">
+                <?php load_view('widgets/button', $params['right']); ?>
+            </td>
+        <? }?>
     </tr>
 </table>

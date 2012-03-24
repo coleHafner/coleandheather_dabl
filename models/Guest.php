@@ -184,6 +184,7 @@ class Guest extends baseGuest {
 
 	$q = new Query(Guest::getTableName() . ' g');
 	$q->add('g.guest_id', 0, Query::GREATER_THAN);
+        //$q->add('g.activation_code', null, Query::IS_NOT_NULL);
 	$q->orderBy('g.last_name', Query::ASC);
 
 	//apply constraints
@@ -207,7 +208,7 @@ class Guest extends baseGuest {
 
     public static function getAllParents() {
 	$q = new Query;
-	$q->add('parent_guest_id', 0);
+	$q->add('parent_guest_id', null, Query::IS_NOT_NULL);
 	$q->orderBy('last_name', Query::ASC);
 	return self::doSelect($q);
     }//getAllParents()

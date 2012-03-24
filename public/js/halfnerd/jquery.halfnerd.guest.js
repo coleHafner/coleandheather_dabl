@@ -95,7 +95,6 @@ function editGuest(pk) {
 	'/partial/admin/guest-edit?pk=' + pk,
 	$form.serialize(),
 	function(reply){
-	    alert('reply: ' + reply);
 	    var dialogId = '#guest-edit-' + pk;
 	    $( dialogId ).remove();
 	    guestListFilter();
