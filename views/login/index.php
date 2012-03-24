@@ -21,3 +21,7 @@
 
     </form>
 </div>
+
+<div style="position:relative;margin:25px auto auto auto;width:362px;" class="center">
+    <a href="<?php echo site_url('/') ?>"> &lt; &lt; Go To Site</a>
+</div>

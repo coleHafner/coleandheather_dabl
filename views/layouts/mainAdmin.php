@@ -1,11 +1,3 @@
-<?php
-/*
-$u = new User;
-$u->setUsername('becky');
-$u->setPassword(User::passwordEncrypt(User::passwordSalt(), 'fancy4nate!'));
-$u->save();
-*/
-?>
 <?php load_view( 'layouts/headAdmin', $params ); ?>
 
 <body class="font_normal bg_color_white">
@@ -28,14 +20,12 @@ $u->save();
 		    <div class="logo_words_container header_mega color_accent">
 			    Halfnerd <span class="color_orange">CMS</span>
 		    </div>
-
-<?php if(LoggedInApplicationController::haveActiveLogin()) { ?>
-
+<?php if(Application::haveActiveLogin()) { ?>
                     <div style="position:absolute;right:0;top:20px;background-color:#eaeaea;" class="rounded_corners border_dark_grey padder_10">
-                        Welcome <?php echo LoggedInApplicationController::getUser()->getUserName(); ?> |
+                        Welcome <?php echo Application::getUser()->getUserName(); ?> |
                         <a href="#" id="authentication" process="logout">Logout</a>
                     </div>
-<?php }?>
+<? } ?>
 
 		</div>
 
@@ -53,28 +43,32 @@ $u->save();
 
 	    <!--main content container-->
 	    <div class="container_12">
-<?php if(LoggedInApplicationController::haveActiveLogin()) { ?>
+<?php if(Application::haveActiveLogin()) { ?>
 		<div class="grid_3">
+
 		    <div class="go_to_site_link">
 			    <a href="<?php echo site_url(); ?>">
 				    &lt;&lt; Go To Site
 			    </a>
 		    </div>
 		    <?php load_view('admin/module-nav', $params); ?>
+                    &nbsp;
 		</div>
 
 		<div class="grid_9">
+
 		    <div class="title_bar header center padder_15 bg_gradient_linear color_orange">
 			    <?php echo (isset($title)) ? $title : ''; ?>
-			    <?php echo (isset($titleButton)) ? $titleButton : ''; ?>
 		    </div>
+
 		    <?php echo $content; ?>
 		</div>
-<?php }else { load_view('admin/module-login', $params); ?>
-                <div style="position:relative;margin:25px auto auto auto;width:362px;" class="center">
-                    <a href="<?php echo site_url('/') ?>"> &lt; &lt; Go To Site</a>
+<?php }else { ?>
+                <div class="grid_12">
+                    <?php echo $content; ?>
                 </div>
-<?php } ?>
+<?php }?>
+
  		<div class="clear"></div>
 	    </div>
 	    <!--/main content container-->

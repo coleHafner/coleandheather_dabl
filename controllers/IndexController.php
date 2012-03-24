@@ -7,5 +7,5 @@ class IndexController extends ApplicationController {
 	$this['active_view'] = 'index';
 	$this['section_title'] = 'her-story';
     }//index()
-    
+
 }//class IndexController

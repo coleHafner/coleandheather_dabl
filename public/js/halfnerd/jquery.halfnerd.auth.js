@@ -111,7 +111,7 @@ session functions
     {
         $.ajax({
             type: "POST",
-            url: '/admin/logout',
+            url: '/login/logout',
             data: "",
             success: function( reply ) {
                 window.location.reload();
@@ -124,7 +124,7 @@ session functions
     {
         $.ajax({
             type:"POST",
-            url:'/admin/login',
+            url:'/login/login',
             data: $( "#auth_login_form" ).serialize( true ),
             success: function( reply ){
                 //get result
@@ -134,7 +134,7 @@ session functions
 
                 if( result == 1 )
                 {
-                    window.location.reload();
+                    window.location = '/admin';
                 }
                 else
                 {

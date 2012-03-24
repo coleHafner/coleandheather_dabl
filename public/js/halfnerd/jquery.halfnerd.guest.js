@@ -34,6 +34,8 @@ $( document ).ready( function(){
 
 		break;
 
+
+
 	    default:
 		alert( "Thing not avail." );
 		break;
@@ -55,6 +57,10 @@ $( document ).ready( function(){
 		$list.attr('id', '');
 		$('#additional-guest-types').append($list);
 		break;
+
+            case 'print':
+                alert('here');
+               break;
 
 	    default:
 		var $di = getDialog(opts);

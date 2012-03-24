@@ -5,17 +5,7 @@ class AdminController extends LoggedInApplicationController {
     function __construct() {
 	parent::__construct();
 	$this->layout = 'layouts/mainAdmin';
-	$this['login-button'] = array(
-	    'pk_name' => "auth_id",
-	    'pk_value' => "0",
-	    'id' => "authentication",
-	    'process' => "login",
-	    'button_value' => "Login",
-	    'extra_style' => 'style="width:70px"',
-	);
-    }
-
-//__construct
+    }//__construct
 
     function index() {
 	$this['title'] = "RSVP Stats";
@@ -23,7 +13,8 @@ class AdminController extends LoggedInApplicationController {
 
 	$this['stats'] = Guest::getStats();
 	$this['lists'] = Guest::getGuestLists();
-    }//index
+
+    }//index()
 
     function guestList(){
 
@@ -50,6 +41,13 @@ class AdminController extends LoggedInApplicationController {
 	    'link_style' => 'style="float:right;width:70px;font-size:10px;"',
 	);
 
+        $this['button_2'] = array(
+            'href' => site_url('admin/guest-list-print'),
+	    'button_value' => "Print List",
+	    'inner_div_style' => 'style="padding-top:4px;padding-left:1px;"',
+	    'link_style' => 'style="float:right;width:70px;font-size:10px;"',
+	);
+
 	$this['form-buttons'] = array(
 	    'left' => array(
 		'pk_name' => "guest_list_id",
@@ -69,6 +67,16 @@ class AdminController extends LoggedInApplicationController {
 	$this['guests'] = Guest::getGuestListComplete($hasReplied, $guestTypeId);
     }//guestListSearch()
 
+    function guestListPrint() {
+        $this->layout = 'layouts/minimal';
+        $q = new Query;
+        $q->addOrder('last_name', Query::ASC);
+        $q->add('parent_guest_id', null, Query::IS_NULL);
+        $this['guests'] = Guest::doSelect($q);
+        $this['total_guest_count'] = Guest::doCount();
+
+    }//guestListPrint()
+
     function guestEdit() {
 
 	if($_REQUEST['pk'] > 0) {
@@ -84,29 +92,7 @@ class AdminController extends LoggedInApplicationController {
 
 	}else {
 
-	    if($activeRecord->isNew()) {
-		$activeRecord->setParentGuestId($_REQUEST['parent_guest_id']);
-		$activeRecord->setInitialTimestamp(strtotime('now'));
-		$activeRecord->setRsvpThroughSite(0);
-		$activeRecord->setAddressId(0);
-
-		if($_REQUEST['parent_guest_id'] == 0) {
-                    $activeRecord->setActivationCode(Guest::getUniqueActivationCode($_REQUEST['first_name']));
-                }
-
-                $activeRecord->save();
-
-                foreach($_REQUEST['guest_type_id'] as $gtId) {
-                    $activeRecord->addGuestTypeId($gtId);
-                }
-	    }
-
-	    $isAttending = (isset($_REQUEST['is_attending'])) ? 1 : 0;
-	    $activeRecord->setFirstName($_REQUEST['first_name']);
-	    $activeRecord->setLastName($_REQUEST['last_name']);
-	    $activeRecord->setIsAttending($isAttending);
-            $activeRecord->setUpdateTimestamp(time());
-	    $result = $activeRecord->save();
+	    $activeRecord->doEdit($_REQUEST);
 	    die;
 	}
     }//guestEdit()
@@ -123,23 +109,5 @@ class AdminController extends LoggedInApplicationController {
 	    die;
 	}
     }//guestDelete()
-
-    function login() {
-
-        $user = User::retrieveByUserName($_REQUEST['username']);
-
-        if($user && User::passwordCompare($_REQUEST['password'], $user->getPassword())) {
-            LoggedInApplicationController::doLogin($_REQUEST['username'], $_REQUEST['password']);
-            echo '1^Login Succesful';
-        }else {
-            echo '0^Invalid username or password.';
-        }
-        die;
-    }//login()
-
-    function logout() {
-        LoggedInApplicationController::doLogout();
-        die;
-    }//logout()
 
 }//class AdminController

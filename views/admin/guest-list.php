@@ -1,5 +1,6 @@
 <div class="title_button_container">
   <?php load_view('widgets/button-round', $params['button']); ?>
+    <?php load_view('widgets/button-round', $params['button_2']); ?>
 </div>
 
 <div id="guest_list_filter" class="margin_10_top padder_10 rounded_corners bg_color_light_tan">

@@ -255,4 +255,33 @@ class Guest extends baseGuest {
         return $code;
     }//getUniqueActivationCode()
 
+    public function doEdit($form_vals) {
+
+        if($this->isNew()) {
+            $this->setParentGuestId($form_vals['parent_guest_id']);
+            $this->setInitialTimestamp(strtotime('now'));
+            $this->setRsvpThroughSite(0);
+            $this->setAddressId(0);
+
+            if($form_vals['parent_guest_id'] == 0) {
+                $this->setActivationCode(Guest::getUniqueActivationCode($form_vals['first_name']));
+            }
+
+            $this->save();
+
+            foreach($form_vals['guest_type_id'] as $gtId) {
+                $this->addGuestTypeId($gtId);
+            }
+        }
+
+        $isAttending = (isset($form_vals['is_attending'])) ? 1 : 0;
+        $this->setFirstName($form_vals['first_name']);
+        $this->setLastName($form_vals['last_name']);
+        $this->setIsAttending($isAttending);
+        $this->setUpdateTimestamp(time());
+
+        return $this->save();
+
+    }//doEdit()
+
 }//class Guest
