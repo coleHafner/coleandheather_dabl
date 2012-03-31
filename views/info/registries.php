@@ -20,7 +20,12 @@
         <div class="padder_10">
 
             <div class="padder_10" style="position:relative;margin:auto;width:500px;margin-top:100px;">
-                <img src="/images/macys.jpg" />
+                <a href="http://www1.macys.com/registry/wedding/guest/?registryId=767417" target="_blank">
+                    <img src="/images/macys.jpg" />
+                </a>
+                <div class="font_small padder_10 center">
+                    Click to see online registry
+                </div>
             </div>
 
             <div class="info_donate">
