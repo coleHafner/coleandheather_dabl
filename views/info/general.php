@@ -27,7 +27,7 @@
                     </div>
                     <div class="header_text light_purple" style="padding-top:15px;">
                         August 25, 2012<br/>
-                        4PM
+                        4:30 PM
                     </div>
                 </div>
             </div>
