@@ -1,0 +1,11 @@
+[01-Apr-2012 11:46:16] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 25
+[01-Apr-2012 11:47:15] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 25
+[01-Apr-2012 11:47:57] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 26
+[01-Apr-2012 11:49:20] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 28
+[01-Apr-2012 11:49:53] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 28
+[01-Apr-2012 11:50:40] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 28
+[01-Apr-2012 11:51:00] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 29
+[01-Apr-2012 11:51:28] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 29
+[01-Apr-2012 11:53:10] PHP Parse error:  syntax error, unexpected ')' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 25
+[01-Apr-2012 11:53:46] PHP Parse error:  syntax error, unexpected T_ARRAY, expecting T_STRING or T_VARIABLE or '$' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 3
+[01-Apr-2012 11:57:42] PHP Parse error:  syntax error, unexpected T_ARRAY, expecting T_STRING or T_VARIABLE or '$' in /home8/colehafn/public_html/nateandrebekah.com/libraries/migrations/create_new_user.php on line 3

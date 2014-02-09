@@ -5,8 +5,10 @@
 
 	<meta name="viewport" content="width=device-width; user-scalable=1;" ></meta>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" ></meta>
+	
 	<title><?php echo ucfirst( strtolower( $current_page ) ) . ' - ' . SITE_NAME; ?></title>
 
+	<link rel="icon" type="image/png" href="http://nateandrebekah.com/favicon.ico" />
 	<link rel="stylesheet" href="<?php echo site_url( '/css/themes/cah/extensions/960_grid.css' ); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo site_url( '/css/themes/cah/extensions/jquery-ui-1.8.1.custom.css' ); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo site_url( '/css/themes/cah/extensions/imgbox.css' ); ?>" type="text/css" />
